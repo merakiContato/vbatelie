@@ -36,7 +36,7 @@
         <div class="container-fluid text-center justify-content-center">
             <div class="navbar-header">
                 <div class="logo1 navbar-brand mx-auto" href="#">
-                    <img src="imagens/logo1.png" alt="Logo" class="img-fluid">
+                    <img src="imagens/Logo1.png" alt="Logo" class="img-fluid">
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -114,7 +114,7 @@
         </div>
         <div class="row direitos">
             <div class="col-md-12 d-flex justify-content-center">
-                <img src="imagens/logo3.png" alt="Logo3" class="img-fluid">
+                <img src="imagens/Logo3.png" alt="Logo3" class="img-fluid">
                 <p class="pt-1">&COPY; Todos os direitos reservados</p>
             </div>
         </div>
