@@ -22,7 +22,7 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="imagens/imagem1.jpg" class="d-block w-100" alt="...">
+                            <img src="imagens/Imagem1.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>Concertos em geral</h2>
                             </div>
