@@ -1,0 +1,799 @@
+/* ----------------- Importando fonte ------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* ----------------- Configurações gerais ------------------ */
+
+#body {
+    background-color: #fbe7ff;
+    font-family: 'Poppins', sans-serif !important;
+    color: #333333 !important;
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* ----------------- Cabeçalho ------------------ */
+
+.img-logo {
+    background-color: #e7d8ed;
+}
+
+.img-logo img {
+    width: 245px;
+    height: auto;
+    filter: grayscale(100%);
+    padding: 8px;
+}
+
+.navbar {
+    background-color: #e7d8ed;
+}
+
+.navbar-toggler {
+    margin-right: 10px;
+}
+
+nav li a {
+    margin: 0px 20px;
+    text-transform: uppercase;
+}
+
+nav .navbar-nav li {
+    position: relative;
+}
+
+nav .navbar-nav li::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: 0;
+    background-color: #ad5ff1;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 0.3s ease;
+}
+
+nav .navbar-nav li:hover::before {
+    transform: scaleX(1);
+    transform-origin: top right;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav .nav-link {
+    margin: 0 20px;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    padding-left: 10px;
+}
+
+nav .nav-link:hover {
+    color: #ad5ff1;
+}
+
+nav .navbar-nav li.active a {
+    color: #ad5ff1;
+}
+
+nav .navbar-header a {
+    color: #2c2c2c;
+}
+
+nav .navbar-nav li.active a {
+    color: #CFBAE1;
+}
+
+nav .navbar-header a {
+    color: #2c2c2c;
+}
+
+.btn-gerenciamento {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    background-color: #b93171 !important;
+}
+
+.btn-gerenciamento a {
+    text-transform: uppercase;
+    color: #fff6f9 !important;
+    font-weight: 400 !important;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+/* ----------------- Página sobre ------------------ */
+
+.historia h2 {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #B93171;
+    color: #fbe7ff;
+}
+
+.texto-sobre {
+    text-align: justify;
+    font-size: 21px;
+    text-indent: 30px;
+}
+
+.nome {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.img1 img {
+    width: 400px;
+    border-radius: 100px;
+}
+
+.img2 img {
+    border-radius: 50%;
+    width: 300px;
+    border: 10px double #333333;
+}
+
+div .local {
+    background-color: #cfbae1;
+}
+
+.local h2 {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.local p {
+    font-size: 24px;
+}
+
+.local .mapa {
+    width: 90%;
+    height: 70vh;
+}
+
+/* ----------------- Rodapé ------------------ */
+
+footer {
+    background-color: #e7d8ed;
+}
+
+footer h4 {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.paginas li {
+    margin-bottom: 10px;
+}
+
+.paginas a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #333333 !important;
+}
+
+.pagamento svg {
+    width: 40px;
+    height: 40px;
+    padding-right: 10px;
+}
+
+.contato-email {
+    padding-top: 10px;
+}
+
+.contato a {
+    text-decoration: none;
+    color: #333333 !important;
+    text-transform: uppercase;
+}
+
+.contato svg {
+    width: 25px;
+    height: 25px;
+}
+
+.forms {
+    border: 2px solid #333333;
+    border-radius: 10px;
+    margin-top: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 270px;
+    margin-bottom: 10px;
+}
+
+.forms input {
+    width: 250px;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.forms input::placeholder {
+    color: #333333;
+}
+
+.forms textarea {
+    width: 250px;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.forms button {
+    background-color: #333333 !important;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #fff6f9 !important;
+}
+
+.forms textarea::placeholder {
+    color: #333333;
+}
+
+.meraki img {
+    max-width: 35px;
+    height: auto;
+}
+
+.meraki h5,
+.meraki h6 {
+    font-weight: 600;
+    color: #19171a;
+
+}
+
+.meraki a {
+    text-decoration: none;
+}
+
+/* -------------------- Página home --------------------- */
+.carousel-caption {
+    z-index: 2;
+}
+
+#myCarousel .carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-30%);
+}
+
+#myCarousel .carousel-caption h1 {
+    color: #fff6f9;
+    text-transform: uppercase;
+}
+
+.carousel-indicators .carousel-button {
+    background-color: #efccdc;
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+    width: 90%;
+    height: auto;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-home {
+    border: 1px solid #333333 !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.card-img {
+    padding: 20px 20px 0 20px;
+    width: 100% !important;
+    height: auto;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.card h6 {
+    padding-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.card-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff6f9;
+    opacity: 0;
+    /* Para o texto dos cards só aparecer quando passarmos com o mouse */
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+
+.card:hover .card-content {
+    opacity: 1;
+}
+
+.produtos {
+    text-transform: uppercase;
+    color: #b93171 !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.instagram {
+    background-color: #cfbae1;
+    color: #49365a;
+}
+
+/* catálogo (?) */
+.card-catalogo {
+    background-color: #efccdc;
+    border-radius: 10px;
+    border: none;
+}
+
+.faixa_01 {
+    color: #b93171;
+}
+
+/* ----------------- Whatsapp ------------------ */
+
+#whatsapp-icon {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.whatsapp-svg {
+    width: 40px;
+    height: 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*------ Página catálogo ------*/
+
+.catalogo .card {
+    min-width: 100%;
+    min-height: 420px;
+    margin: 25px;
+    padding: 10px 4px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(95, 0, 55, 0.5);
+    transition: 0.3s;
+    background-color: #ffc8e3;
+    position: relative;
+}
+
+.catalogo .card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(238, 217, 248, 0.5) 100%);
+    z-index: 1;
+}
+
+.catalogo .container-fluid .card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.catalogo .card-header {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.catalogo .card-header img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.catalogo .card-body {
+    height: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.catalogo .card-titulo {
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #5f0d33;
+}
+
+.catalogo .card-texto {
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    margin: 0 auto;
+    color: #5f0d33;
+}
+
+.catalogo .card:hover {
+    transform: scale3d(1.1, 1.1, 1);
+    background-color: #CFBAE1;
+    box-shadow: 0px 0px 10px rgba(49, 0, 95, 0.5);
+}
+
+
+.catalogo .card-catalogo {
+    background-color: #efccdc;
+    border-radius: 10px;
+    border: none;
+}
+
+/* -------- VIEW PROVISÓRIA DO MATERIAL --------- */
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    color: #741340;
+}
+
+.btn-primary {
+    background-color: #B93171;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #240062;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    text-align: center;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #B93171;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.btn-close {
+    color: #fff;
+}
+
+.btn-warning,
+.btn-primary,
+.btn-danger {
+    margin-right: 5px;
+}
+
+/* ---------- Página de relatorio financeiro ----------- */
+
+.relatorio h1 {
+    color: #b93171;
+    text-transform: uppercase;
+}
+
+.btn-relatorio {
+    margin: 10px;
+    background-color: #b93171 !important;
+    text-transform: uppercase;
+    color: #fff6f9 !important;
+    font-weight: 400 !important;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.relatorio input:defined,
+.relatorio select:defined,
+.relatorio input::placeholder {
+    box-shadow: none;
+    color: #B93171;
+
+}
+
+.relatorio .table {
+    color: #B93171;
+    border-color: #B93171;
+}
+
+/* ---------- Painel de gerenciamento ----------- */
+
+.gerenciamento .img-logo img {
+    width: 200px;
+    height: auto;
+    filter: grayscale(100%);
+    background-color: none;
+}
+
+.btn-painel {
+    margin: 10px;
+    background-color: #b93171 !important;
+}
+
+.btn-painel a {
+    text-transform: uppercase;
+    color: #fff6f9 !important;
+    font-weight: 400 !important;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/*------ Página login ------*/
+.login .col-colorida {
+    background-color: transparent;
+}
+
+.login .acesso {
+    background-color: #f7c5de;
+    border-radius: 0;
+    color: #b93171;
+    font-size: 18px;
+    text-transform: uppercase;
+    border: none;
+}
+
+.login .acesso:hover {
+    background-color: #240062;
+    color: #fdecf2;
+}
+
+.login .btn2 {
+    color: #fdecf2;
+    background-color: #240062;
+    font-size: 17px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    border: none;
+}
+
+.login .btn3 {
+    color: #fdecf2;
+    background-color: #b93171;
+    border-radius: 10px;
+    font-size: 17px;
+    text-transform: uppercase;
+    border: none;
+}
+
+.login .btn2:hover {
+    background-color: #c29de2;
+    color: #ffffff;
+    box-shadow: 0px 0px 20px 0px #c29de2;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
+}
+
+.login .btn2:active {
+    background-color: #9135e1;
+    color: #ffffff;
+    box-shadow: 0px 0px 20px 0px #9135e1;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
+}
+
+.login .btn3:hover {
+    background-color: #f29aca;
+    color: #ffffff;
+    box-shadow: 0px 0px 20px 0px #f29aca;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
+}
+
+.login .btn3:active {
+    background-color: #ef54a9;
+    color: #ffffff;
+    box-shadow: 0px 0px 20px 0px #ef54a9;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
+}
+
+.login .img1 {
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.login .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.login .form-container input {
+    border: 1px solid #B93171;
+    border-radius: 12px;
+    width: 20rem;
+    height: 25px;
+    background-color: transparent;
+    padding: 14px;
+    margin-bottom: 25px;
+}
+
+.login .form-container ::placeholder {
+    text-transform: none;
+    color: #4e1932;
+}
+
+.login .col-direita-ge {
+    background-image: url(public/assets/images/loginge.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.container-login {
+    text-align: center;
+}
+
+.html1,
+.container-login2 {
+    background-color: #fdecf2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login h2 {
+    margin-top: 15px;
+    font-size: 30px;
+    color: #b93171;
+    font-weight: bold;
+}
+
+.login p {
+    margin-top: 30px;
+    margin-bottom: 25px;
+    font-size: 25px;
+    text-transform: none;
+    color: #b93171;
+}
+
+.login a,
+.login a:hover,
+.login a:active {
+    text-decoration: none;
+    color: #fdecf2;
+}
+
+/*------ Página inicial gerenciamento ------*/
+
+.gerenciamento .navbar-brand {
+    width: 170px;
+}
+
+.gerenciamento button,
+.gerenciamento button:hover,
+.gerenciamento button:focus,
+.gerenciamento button:active {
+    background-color: #B93171;
+    border: none;
+    border-radius: 10px;
+}
+
+.gerenciamento a,
+.gerenciamento a:hover,
+.gerenciamento a:active {
+    text-decoration: none;
+    color: #fdecf2;
+}
+
+/*------ Página gerenciamento gerente ------*/
+
+.geren a {
+    text-decoration: none;
+    color: #B93171;
+}
+
+.geren .row button:hover,
+.geren .row button:active,
+.geren .row button:focus {
+    background-color: #6e82d8;
+    box-shadow: 0px 0px 20px 0px #7688d5;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
+}
+
+.geren .row a:hover,
+.geren .row a:active,
+.geren .row a:focus {
+    color: #ffffff;
+}
+
+.geren h1 {
+    color: #2A2F99;
+    background-color: #C4CCF0;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.geren h3 {
+    color: #B93171;
+    text-transform: uppercase;
+}
+
+.geren h5 {
+    color: white;
+    background-color: #929FDA;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    padding: 7px 7px;
+}
+
+.geren button,
+.geren button:hover,
+.geren button:focus,
+.geren button:active {
+    background-color: #F7C5DE;
+    color: #603981;
+    border: none;
+    width: 300px;
+    margin: 10px auto;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+
+.geren {
+    min-height: 100vh;
+}
