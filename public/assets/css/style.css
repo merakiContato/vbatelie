@@ -110,6 +110,10 @@ nav .navbar-header a {
 .btn-gerenciamento a {
     text-transform: uppercase;
     color: #fff6f9 !important;
+<<<<<<< HEAD
+=======
+    font-weight: 400 !important;
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     letter-spacing: 1px;
     text-decoration: none;
 }
@@ -139,7 +143,11 @@ nav .navbar-header a {
     letter-spacing: 1px;
 }
 
+<<<<<<< HEAD
 .historia .img1 img {
+=======
+.img1 img {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     width: 400px;
     border-radius: 100px;
 }
@@ -499,8 +507,12 @@ label {
 
 .table th,
 .table td {
+<<<<<<< HEAD
     text-align: center !important;
     color: #741340 !important;
+=======
+    text-align: center;
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 }
 
 .modal-content {
@@ -527,6 +539,7 @@ label {
     margin-right: 5px;
 }
 
+<<<<<<< HEAD
 .btnSave {
     background-color: #b93171 !important;
     border: none !important;
@@ -545,6 +558,8 @@ label {
     color: #fff6f9 !important;
 }
 
+=======
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 /* ---------- Página de relatorio financeiro ----------- */
 
 .relatorio h1 {
@@ -693,9 +708,15 @@ label {
 }
 
 .login .col-direita-ge {
+<<<<<<< HEAD
     background-image: url(public/assets/images/logo2.png) !important;
     background-size: cover !important;
     background-position: center !important;
+=======
+    background-image: url(public/assets/images/loginge.jpg);
+    background-size: cover;
+    background-position: center;
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 }
 
 .container-login {
@@ -814,6 +835,7 @@ label {
 
 .geren {
     min-height: 100vh;
+<<<<<<< HEAD
 }
 
 /*------ Layout geral do gerenciamento das tabelas ------*/
@@ -845,4 +867,6 @@ label {
 
 .td-centered {
     vertical-align: middle !important;
+=======
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 }

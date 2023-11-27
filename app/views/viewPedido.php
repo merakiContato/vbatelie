@@ -19,6 +19,7 @@
 </head>
 
 <body id="body">
+<<<<<<< HEAD
     <div class="d-flex flex-column min-vh-100">
 
         <nav class="nav navbar d-flex justify-content-between mx-0 gerenciamento">
@@ -33,6 +34,13 @@
         <h2 class="text-center mt-4 mb-0 text-geren">Gerenciamento de pedidos</h2>
 
         <form id="newPedido" class="row g-4 m-4">
+=======
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Gerenciamento de Pedidos</h2>
+
+        <form id="newPedido" class="row g-3 mb-4">
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
             <div class="col-md-4">
                 <label for="cpf" class="form-label">CPF</label>
                 <input type="text" class="form-control" id="cpf" name="cpf" required>
@@ -106,7 +114,11 @@
                 <input type="text" class="form-control" id="observacao" name="observacao">
             </div>
             <div class="col-12">
+<<<<<<< HEAD
                 <button type="submit" class="btn btn-add py-1 px-2">Adicionar Pedido</button>
+=======
+                <button type="submit" class="btn btn-primary">Adicionar Pedido</button>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
             </div>
         </form>
 
@@ -114,8 +126,13 @@
     </div>
 
     <script>
+<<<<<<< HEAD
         var ctrlPedidoUrl = "pedido";
         var listAllPedido = "pedido";
+=======
+        var ctrlPedidoUrl = "ctrlPedido";
+        var listAllPedido = "ctrlPedido";
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         var labelsPedido = ['idPedido', 'cpf', 'idProfissional', 'valorOrcamento', 'idServico', 'valorEntrada', 'valorFinal', 'medidasPedido', 'dtPrevIni', 'dtPagEntrada', 'dtFim', 'valorTotalFim', 'dtPagFim', 'tipoPag', 'sitPag', 'dtExpedicao', 'dtEntrada', 'dtCancelamento', 'observacao'];
 
         $(document).ready(function() {
@@ -126,19 +143,29 @@
                 var formData = $(this).serialize();
                 $.ajax({
                     url: ctrlPedidoUrl,
+<<<<<<< HEAD
                     method: 'POST',
+=======
+                    type: 'POST',
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                     data: formData,
                     success: function(response) {
                         alert('Pedido adicionado com sucesso!');
                         loadTable(listAllPedido, labelsPedido, ctrlPedidoUrl);
                     },
+<<<<<<< HEAD
                     error: function(xhr, status, error) {
                         alert('Erro ao adicionar o pedido. Detalhes: ' + error);
+=======
+                    error: function() {
+                        alert('Erro ao adicionar o pedido.');
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                     }
                 });
             });
         });
 
+<<<<<<< HEAD
         function saveFormData(idform) {
             var formData = $("#" + idform).serialize();
 
@@ -179,16 +206,24 @@
             });
         }
 
+=======
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         function loadTable(urlDataTable, labelsDataTable, sendCtrlSaveDeleteUrl) {
             $.ajax({
                 url: urlDataTable,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+<<<<<<< HEAD
                     var tableHtml = '<div class="table-responsive m-4" style="overflow-x: auto;">';
                     tableHtml += '<table class="table table-striped" style="max-width: 100%;">';
 
                     tableHtml += '<thead class="table-header">';
+=======
+                    var tableHtml = '<table class="table table-striped">';
+                    tableHtml += '<thead><tr>';
+
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                     $.each(labelsDataTable, function(i, label) {
                         tableHtml += '<th>' + label.charAt(0).toUpperCase() + label.slice(1) + '</th>';
                     });
@@ -201,16 +236,28 @@
                         tableHtml += '<tr>';
                         tableHtml += '<form id="' + formId + '" name="' + formId + '" class="frmCadastro">';
                         $.each(labelsDataTable, function(i, label) {
+<<<<<<< HEAD
                             tableHtml += '<td class="td-centered">' +
                                 '<input type="text" class="form-control input-large" name="' + labelsPedido[i] + '" form="' + formId + '" value="' + (pedido[label] || '') + '" >' +
+=======
+                            tableHtml += '<td>' +
+                                '<input type="text" name="' + labelsPedido[i] + '" form="' + formId + '" value="' + (pedido[label] || '') + '" >' +
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                                 '</td>';
                         });
                         tableHtml +=
                             '<td>' +
+<<<<<<< HEAD
                             '<button class="btn btnSave" onclick="saveFormData(\'' + formId + '\');" >Salvar</button>' +
                             '</td>' +
                             '<td>' +
                             '<button class="btn btnDelete" onclick="delFormData(\'' + formId + '\');" >Excluir</button>' +
+=======
+                            '<button class="btn btn-primary btnSave" onclick="saveFormData(\'' + formId + '\');" >Salvar</button>' +
+                            '</td>' +
+                            '<td>' +
+                            '<button class="btn btn-danger btnDelete" onclick="delFormData(\'' + formId + '\');" >Excluir</button>' +
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                             '</td>' +
                             '</tr>';
                         tableHtml += '</form">';
@@ -225,6 +272,7 @@
             });
         }
 
+<<<<<<< HEAD
     </script>
 
     <footer class="py-3">
@@ -235,6 +283,40 @@
             </a>
         </div>
     </footer>
+=======
+        function saveFormData(idform) {
+            var formData = $("#" + idform).serialize();
+            $.ajax({
+                url: ctrlPedidoUrl,
+                type: 'POST',
+                data: formData + '&action=save',
+                success: function(response) {
+                    alert('Pedido editado com sucesso!');
+                    loadTable(listAllPedido, labelsPedido, ctrlPedidoUrl);
+                },
+                error: function() {
+                    alert('Erro ao salvar as alterações no pedido.');
+                }
+            });
+        }
+
+        function delFormData(idform) {
+            var formData = $("#" + idform).serialize();
+            $.ajax({
+                url: ctrlPedidoUrl,
+                type: 'POST',
+                data: formData + '&action=delete',
+                success: function(response) {
+                    alert('Pedido excluído com sucesso!');
+                    loadTable(listAllPedido, labelsPedido, ctrlPedidoUrl);
+                },
+                error: function() {
+                    alert('Erro ao excluir o pedido.');
+                }
+            });
+        }
+    </script>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 </body>
 
 </html>

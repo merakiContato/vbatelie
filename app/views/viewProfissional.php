@@ -4,11 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Gerenciamento de profissionais</title>
     <link rel="icon" type="image/png" href="public/assets/images/Logo2.png">
     <link rel="shortcut icon" href="public/assets/images/icon.ico" type="image/x-ico">
     <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
+=======
+    <title>Gerenciamento de Profissional</title>
+    <link rel="icon" type="image/png" href="public/assets/images/Logo2.png">
+    <link rel="shortcut icon" href="public/assets/images/icon.ico" type="image/x-ico">
+
+    <!-- Links das bibliotecas, estão internas agora-->
+    <link rel="stylesheet" href="public/assets/css/style.css">
+    <link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
+
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     <script src="public/assets/js/jquery.min.js"></script>
     <script src="public/assets/js/bootstrap.bundle.min.js"></script>
     <script src="public/assets/js/jquery.mask.js"></script>
@@ -18,6 +29,7 @@
 
 <body id="body">
 
+<<<<<<< HEAD
     <div class="d-flex flex-column min-vh-100">
 
         <nav class="nav navbar d-flex justify-content-between mx-0 gerenciamento">
@@ -32,6 +44,13 @@
         <h2 class="text-center mt-4 mb-0 text-geren">Gerenciamento de profissionais</h2>
 
         <form id="newProfissional" class="row g-4 m-4">
+=======
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Gerenciamento de Profissionais</h2>
+
+        <!-- Formulário para adicionar novo material -->
+        <form id="newProfissional" class="row g-3 mb-4">
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
@@ -46,6 +65,7 @@
             </div>
             <div class="col-md-6">
                 <label for="cpf" class="form-label">CPF</label>
+<<<<<<< HEAD
                 <input type="text" class="form-control" id="cpf" name="cpf" required>
             </div>
             <div class="col-md-6">
@@ -54,6 +74,16 @@
             </div>
             <div class="col-md-6">
                 <label for="endereco" class="form-label">Endereço</label>
+=======
+                <input type="number" class="form-control" id="cpf" name="cpf" required>
+            </div>
+            <div class="col-md-6">
+                <label for="cep" class="form-label">CEP</label>
+                <input type="number" class="form-control" id="cep" name="cep" required>
+            </div>
+            <div class="col-md-6">
+                <label for="endereco" class="form-label">Endereco</label>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                 <input type="text" class="form-control" id="endereco" name="endereco" required>
             </div>
             <div class="col-md-6">
@@ -62,6 +92,7 @@
             </div>
             <div class="col-md-6">
                 <label for="telefone" class="form-label">Telefone</label>
+<<<<<<< HEAD
                 <input type="tel" class="form-control" id="telefone" name="telefone" required>
             </div>
             <div class="col-md-6">
@@ -73,13 +104,35 @@
             </div>
         </form>
 
+=======
+                <input type="number" class="form-control" id="telefone" name="telefone" required>
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Adicionar profissional</button>
+            </div>
+        </form>
+
+        <!-- Contêiner para exibir a tabela de materiais -->
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         <div id="tableProfissionalContainer"></div>
     </div>
 
     <script>
+<<<<<<< HEAD
         var ctrlProfissionalUrl = "profissional";
         var listAllProfissional = "profissional";
         var labelsProfissional = ['idProfissional', 'nome', 'cargo', 'hrTrabalho', 'cpf', 'cep', 'endereco', 'complemento', 'telefone', 'email'];
+=======
+    
+        // URLs e nomes usados no controle de materiais
+        var ctrlProfissionalUrl = "profissional"; //rota da ctrl
+        var listAllProfissional = "profissional"; //rota da função list all
+        var labelsProfissional = ['idProfissional', 'nome', 'cargo', 'hrTrabalho', 'cpf', 'cep', 'endereco', 'complemento', 'telefone', 'email']; //campos da tabela
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 
         // Função que é executada quando o documento está pronto
         $(document).ready(function() {
@@ -114,16 +167,25 @@
             console.log(formData);
             // Envia uma requisição AJAX para salvar as alterações no Profissional
             $.ajax({
+<<<<<<< HEAD
                 url: ctrlProfissionalUrl  + '?action=save',
                 method: 'PUT',
                 contentType: 'application/x-www-form-urlencoded', // Alterado para o tipo de conteúdo correto
                 data: formData,
+=======
+                url: ctrlProfissionalUrl,
+                method: 'PUT',
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                 success: function(response) {
                     // Adicione logs para depuração
                     console.log("Resposta do servidor após salvar:", response);
 
                     alert('Profissional editado com sucesso!');
+<<<<<<< HEAD
                     loadTable(listAllProfissional, labelsProfissional, ctrlProfissionalUrl);
+=======
+                    loadTable(listAllMateriais, labelsProfissional, ctrlProfissionalUrl);
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                 },
                 error: function(xhr, status, error) {
                     console.error("Erro ao salvar as alterações no Profissional:", error);
@@ -136,12 +198,18 @@
 
         function delFormData(idform) {
             var formData = $("#" + idform).serialize();
+<<<<<<< HEAD
             
             console.log("Dados do formulário a serem excluídos:", formData);
+=======
+            console.log(formData);
+            return;
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
             // Envia uma requisição AJAX para excluir o material
             $.ajax({
                 url: ctrlProfissionalUrl,
                 method: 'DELETE',
+<<<<<<< HEAD
                 contentType: 'application/x-www-form-urlencoded',
                 data: formData,
                 success: function(response) {
@@ -149,6 +217,14 @@
                     alert('Profissional excluído com sucesso!');
                     // Recarrega a tabela após excluir o Profissional
                     loadTable(listAllProfissional, labelsProfissional, ctrlProfissionalUrl);
+=======
+                data: formData,
+                success: function(response) {
+                	console.log(response);
+                    alert('Profissional excluído com sucesso!');
+                    // Recarrega a tabela após excluir o Profissional
+                    loadTable(listAllMateriais, labelsProfissional, ctrlProfissionalUrl);
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                 },
                 error: function(xhr, status, error) {
                     console.error("Erro ao excluir o Profissional:", error);
@@ -158,12 +234,19 @@
             });
         }
 
+<<<<<<< HEAD
         function loadTable(urlDataTable, labelsDataTable, sendCtrlSaveDeleteUrl) {
+=======
+        // Função para carregar e exibir a tabela de materiais, aquela tabelinha bonita
+        function loadTable(urlDataTable, labelsDataTable, sendCtrlSaveDeleteUrl) {
+            // Envia uma requisição AJAX para obter os dados da tabela
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
             $.ajax({
                 url: urlDataTable,
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
+<<<<<<< HEAD
                     var tableHtml = '<div class="table-responsive m-4" style="overflow-x: auto;">';
                     tableHtml += '<table class="table table-striped" style="max-width: 100%;">';
 
@@ -193,10 +276,47 @@
                             '<button class="btn btnDelete" onclick="delFormData( \'' + formId + '\' );" >Excluir</button>' +
                             '</td>' +
                             '</tr>';
+=======
+                    var tableHtml = '<div class="table-responsive" style="overflow-x: auto;">'; // Adiciona estilo para a barra de rolagem horizontal
+                    tableHtml += '<table class="table table-striped" style="max-width: 100%;">'; // Define um máximo de largura para a tabela
+
+                    // Cria cabeçalhos da tabela com base nos rótulos fornecidos
+                    $.each(labelsDataTable, function(i, label) {
+                        tableHtml += '<th>' + label.charAt(0).toUpperCase() + label.slice(1) + '</th>'; // Capitaliza os rótulos
+                    });
+                    tableHtml += '<th>Ações</th></tr></thead><tbody>';
+
+                    // Preenche os dados na tabela
+                    $.each(data, function(i, profissional) {
+                        tableHtml += '<tr>';
+						var formId = "frm"+i;
+                        
+                        tableHtml += '<form id="'+formId+'" name="'+formId+'" class="frmCadastro">';
+                        // Preenche as células da tabela com os dados do profissional
+                        $.each(labelsDataTable, function(i, label) {
+                            tableHtml += '<td>' +
+							'<input type="text" name="'+labelsProfissional[i]+'" form="'+formId+'" value="' +(profissional[label] || '')+'" >' 
+                             
+                             + '</td>'; // Usa || '' para evitar valores nulos
+                        });
+                        // Adiciona botões de ação para editar, salvar e excluir
+                        tableHtml += 
+                            '<td>'+
+                            	'<button class="btn btn-primary btnSave" onclick="saveFormData( \''+formId+'\' );" >Salvar</button>' +
+                            '</td>'+
+                            '<td>'+
+	                            '<button class="btn btn-danger btnDelete" onclick="delFormData( \''+formId+'\' );" >Excluir</button>' +
+                            '</td>'+
+                        '</tr>';
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                         tableHtml += '</form">';
                     });
 
                     tableHtml += '</tbody></table>';
+<<<<<<< HEAD
+=======
+                    // Exibe a tabela no contêiner especificado lá em cima
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                     $('#tableProfissionalContainer').html(tableHtml);
                 },
                 error: function() {
@@ -205,6 +325,7 @@
             });
         }
     </script>
+<<<<<<< HEAD
 
     <footer class="py-3">
         <div class="mt-3 meraki d-flex align-items-center justify-content-center">
@@ -214,6 +335,8 @@
             </a>
         </div>
     </footer>
+=======
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 </body>
 
 </html>

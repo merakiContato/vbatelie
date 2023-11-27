@@ -78,7 +78,11 @@
                     <button class="p-2"><a href="viewCatalogo">Acessar contas</a></button>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                     <button class="p-2"><a href="relatoriofinanceiro">Relatórios</a></button>
+=======
+                    <button class="p-2"><a href="relatorios">Relatórios</a></button>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                 </div>
             </div>
             <div class="col-md-4 mb-2">

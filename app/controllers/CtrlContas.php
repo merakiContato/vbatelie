@@ -22,9 +22,13 @@ class CtrlContas extends ControllerHandler
 
     public function post()
     {
+<<<<<<< HEAD
         var_dump($_POST);
         $idContas = $this->getParameter('idContas') ?? 0;
         $idContas = (($idContas == '') ? 0 : $idContas);
+=======
+        $idContas = $this->getParameter('idContas');
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $mes = $this->getParameter('mes');
         $ano = $this->getParameter('ano');
         $idPedidoMaterial = $this->getParameter('idPedidoMaterial');
@@ -38,6 +42,7 @@ class CtrlContas extends ControllerHandler
         echo $result;
     }
 
+<<<<<<< HEAD
     // SWITCH!
     public function put()
     {
@@ -87,14 +92,40 @@ class CtrlContas extends ControllerHandler
                     break;
             }
         }
+=======
+    public function put()
+    {
+        error_log("Método PUT chamado.");
+        $ano = $this->getParameter('ano');
+        $mes = $this->getParameter('mes');
+
+        $this->contas->setAno($ano);
+        $this->contas->setMes($mes);
+
+        $result = $this->contas->relatorioPeriodo($mes, $ano);
+
+        echo json_encode($result);
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     }
 
 
     public function delete()
     {
         $idContas = $this->getParameter('idContas');
+<<<<<<< HEAD
         $this->contas->setIdContas($idContas);
 
+=======
+        $mes = $this->getParameter('mes');
+        $ano = $this->getParameter('ano');
+        $idPedidoMaterial = $this->getParameter('idPedidoMaterial');
+        $idServContratado = $this->getParameter('idServContratado');
+        $tipo = $this->getParameter('tipo');
+        $preco = $this->getParameter('preco');
+        $dtPag = $this->getParameter('dtPag');
+        $sitPag = $this->getParameter('sitPag');
+        $this->contas->populate($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag);
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $result = $this->contas->delete();
         echo $result;
     }

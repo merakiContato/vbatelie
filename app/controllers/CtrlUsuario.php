@@ -85,10 +85,21 @@ class CtrlUsuario extends ControllerHandler
         echo $result;
     }
 
+<<<<<<< HEAD
     public function delete() {
         $idUsuario = $this->getParameter('idUsuario');
         $this->usuario->setIdUsuario($idUsuario);
     
+=======
+    public function delete()
+    {
+        $idUsuario = $this->getParameter('idUsuario');
+        $senha = $this->getParameter('senha');
+        $nivAcesso = $this->getParameter('nivAcesso');
+        $nome = $this->getParameter('nome');
+        $email = $this->getParameter('email');
+        $this->usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $result = $this->usuario->delete();
         echo $result;
     }

@@ -7,8 +7,12 @@ use core\utils\Sanitize;
 use core\database\Where;
 
 
+<<<<<<< HEAD
 class Material
 {
+=======
+	class Material {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 
 	private $idMaterial;
 	private $titulo;
@@ -19,6 +23,7 @@ class Material
 	private $fieldKey   = "idMaterial";
 	private $dbquery     = null;
 
+<<<<<<< HEAD
 	function __construct()
 	{
 		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
@@ -111,3 +116,86 @@ class Material
 		return ($this->descricao);
 	}
 }
+=======
+	function __construct(){
+		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
+	}
+
+	function populate( $idMaterial, $titulo, $descricao){
+
+		 $this->setIdMaterial( $idMaterial );
+		 $this->setTitulo( $titulo );
+		 $this->setDescricao( $descricao );
+	}
+
+	public function toArray(){
+		 return array(
+			 'idMaterial' => $this->getIdMaterial(),
+			 'titulo' => $this->getTitulo(),
+			 'descricao' => $this->getDescricao()
+		);
+	}
+
+	public function toJson(){
+		return( json_encode( $this->toArray() ));
+	}
+
+	public function toString(){
+		 return("\n\t\t\t". implode(", ",$this->toArray()));
+	}
+
+
+	public function save() {
+		if($this->getIdMaterial() == 0){
+			return( $this->dbquery->insert($this->toArray()));
+		}else{
+			return( $this->dbquery->update($this->toArray()));
+		}
+	}
+
+	public function listAll() {
+		    $rSet = $this->dbquery->select();
+		    return( $rSet );
+	}
+
+	public function listByFieldKey( $value ){
+		    $where = (new Where())->addCondition('AND', $this->fieldKey , '=', $value);
+		    $rSet = $this->dbquery->selectWhere($where);
+		    return( $rSet );
+	}
+
+	public function delete() {
+		if($this->getIdMaterial() != 0){
+			return( $this->dbquery->delete($this->toArray()));
+		}
+	}
+
+	public function setIdMaterial( $idMaterial ){
+		 $this->idMaterial = $idMaterial;
+	}
+
+	public function getIdMaterial(){
+		  return( $this->idMaterial );
+	}
+
+	public function setTitulo( $titulo ){
+		 $this->titulo = $titulo;
+	}
+
+	public function getTitulo(){
+		  return( $this->titulo );
+	}
+
+	public function setDescricao( $descricao ){
+		 $this->descricao = $descricao;
+	}
+
+	public function getDescricao(){
+		  return( $this->descricao );
+	}
+
+}
+
+
+?>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465

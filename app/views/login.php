@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="pt-br">
+=======
+<html lang="en">
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 
 <head>
     <meta charset="UTF-8">
@@ -16,6 +20,7 @@
     <script src="public/assets/js/script.js"></script>
 </head>
 
+<<<<<<< HEAD
 <body id="body" class="login">
 
     <div class="container-fluid">
@@ -54,6 +59,30 @@
 
             <div class="col-md-6 col-direita-ge"></div>
         </div>
+=======
+<body id="body">
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Login</h2>
+
+        <!-- Formulário de Login -->
+        <form id="login-form" class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="col-md-6">
+                <label for="senha" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="senha" name="senha" required>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" onclick="login()">Entrar</button>
+            </div>
+        </form>
+
+        <!-- Mensagem de erro -->
+        <div id="error-message" style="color: red;"></div>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     </div>
 
     <script>
@@ -84,6 +113,10 @@
             $("#error-message").text(message);
         }
     </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 </body>
 
 </html>

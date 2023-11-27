@@ -19,6 +19,7 @@ use core\utils\Sanitize;
  * echo $query; // Produz: WHERE nome = ? AND idade > ?
  * ```
  */
+<<<<<<< HEAD
 class Where
 {
 
@@ -28,6 +29,16 @@ class Where
     {
     }
 
+=======
+class Where {
+    
+    private $conditions = array();
+    
+    public function __construct(){
+        
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição à cláusula WHERE.
      *
@@ -37,17 +48,28 @@ class Where
      * @param mixed $value O valor a ser comparado na condição.
      *
      */
+<<<<<<< HEAD
     public function addCondition($logicOperator, $fieldName, $operator, $value)
     {
+=======
+    public function addCondition($logicOperator, $fieldName, $operator, $value) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         //$value = (new Sanitize(false, false, true))->Clean($value);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "fieldName" => $fieldName,
             "operator" => $operator,
+<<<<<<< HEAD
             "value" => $value
         );
     }
 
+=======
+            "value" => $value 
+        );
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição LIKE à cláusula WHERE.
      *
@@ -56,17 +78,28 @@ class Where
      * @param mixed $value O valor a ser comparado na condição.
      *
      */
+<<<<<<< HEAD
     public function addLike($logicOperator, $fieldName, $value)
     {
+=======
+    public function addLike($logicOperator, $fieldName, $value) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $value = (new Sanitize(false, false, true))->Clean($value);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "LIKE",
             "fieldName" => $fieldName,
+<<<<<<< HEAD
             "value" => "%" . $value . "%"
         );
     }
 
+=======
+            "value" => "%".$value."%"
+        );
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição NOT LIKE à cláusula WHERE.
      *
@@ -75,17 +108,28 @@ class Where
      * @param mixed $value O valor a ser comparado na condição.
      *
      */
+<<<<<<< HEAD
     public function addNotLike($logicOperator, $fieldName, $value)
     {
+=======
+    public function addNotLike($logicOperator, $fieldName, $value) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $value = (new Sanitize(false, false, true))->Clean($value);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "NOT LIKE",
             "fieldName" => $fieldName,
+<<<<<<< HEAD
             "value" => "%" . $value . "%"
         );
     }
 
+=======
+            "value" => "%".$value."%"
+        );
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição IN à cláusula WHERE.
      *
@@ -94,8 +138,12 @@ class Where
      * @param mixed $values Os valores a serem comparados na condição (deve ser um array).
      *
      */
+<<<<<<< HEAD
     public function addIn($logicOperator, $fieldName, $values)
     {
+=======
+    public function addIn($logicOperator, $fieldName, $values) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $values = (new Sanitize(false, false, true))->Clean($values);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
@@ -104,7 +152,11 @@ class Where
             "value" => $values
         );
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição NOT IN à cláusula WHERE.
      *
@@ -113,8 +165,12 @@ class Where
      * @param mixed $values Os valores a serem comparados na condição (deve ser um array).
      *
      */
+<<<<<<< HEAD
     public function addNotIn($logicOperator, $fieldName, $values)
     {
+=======
+    public function addNotIn($logicOperator, $fieldName, $values) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $values = (new Sanitize(false, false, true))->Clean($values);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
@@ -124,7 +180,11 @@ class Where
         );
         return $this;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição BETWEEN à cláusula WHERE.
      *
@@ -134,8 +194,12 @@ class Where
      * @param mixed $max O valor máximo a ser comparado na condição.
      *
      */
+<<<<<<< HEAD
     public function addBetween($logicOperator, $fieldName, $min, $max)
     {
+=======
+    public function addBetween($logicOperator, $fieldName, $min, $max) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $min = (new Sanitize(false, false, true))->Clean($min);
         $max = (new Sanitize(false, false, true))->Clean($max);
         $this->conditions[] = array(
@@ -144,8 +208,14 @@ class Where
             "fieldName" => $fieldName,
             "value" => array($min, $max)
         );
+<<<<<<< HEAD
     }
 
+=======
+
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Adiciona uma condição NOT BETWEEN à cláusula WHERE.
      *
@@ -154,8 +224,12 @@ class Where
      * @param mixed $min O valor mínimo a ser comparado na condição.
      * @param mixed $max O valor máximo a ser comparado na condição.
      */
+<<<<<<< HEAD
     public function addNotBetween($logicOperator, $fieldName, $min, $max)
     {
+=======
+    public function addNotBetween($logicOperator, $fieldName, $min, $max) {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         $min = (new Sanitize(false, false, true))->Clean($min);
         $max = (new Sanitize(false, false, true))->Clean($max);
         $this->conditions[] = array(
@@ -164,13 +238,20 @@ class Where
             "fieldName" => $fieldName,
             "value" => array($min, $max)
         );
+<<<<<<< HEAD
     }
 
+=======
+
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Retorna as condições armazenadas.
      *
      * @return array As condições armazenadas.
      */
+<<<<<<< HEAD
     public function getConditions()
     {
         return $this->conditions;
@@ -184,31 +265,60 @@ class Where
         $this->conditions = array();
     }
 
+=======
+    public function getConditions() {
+        return $this->conditions;
+    }
+    
+    /**
+     * Limpa todas as condições armazenadas.
+     */
+    public function clearConditions() {
+        $this->conditions = array();
+    }
+    
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     /**
      * Constrói a cláusula WHERE com base nas condições armazenadas.
      *
      * @return string $whereClause cláusula WHERE construída.
      */
+<<<<<<< HEAD
     public function build()
     {
         $whereClause = "";
         $hasConditions = false;
 
+=======
+    public function build() {
+        $whereClause = "";
+        $hasConditions = false;
+        
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
         foreach ($this->conditions as $condition) {
             if (!empty($condition["value"])) {
                 if ($hasConditions) {
                     $whereClause .= " " . $condition["logicOperator"] . " ";
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                     $whereClause .= " WHERE ";
                     $hasConditions = true;
                 }
                 $fieldName = $condition["fieldName"];
                 $operator = $condition["operator"];
                 $value = $condition["value"];
+<<<<<<< HEAD
 
                 // Adicione logs para depuração
                 error_log("FieldName: " . $fieldName . ", Operator: " . $operator . ", Value: " . print_r($value, true));
 
+=======
+                
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
                 switch ($operator) {
                     case "IN":
                     case "NOT IN":
@@ -229,7 +339,11 @@ class Where
                 }
             }
         }
+<<<<<<< HEAD
         return ($whereClause);
+=======
+        return ( $whereClause );
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     }
 }
 
@@ -279,3 +393,8 @@ class Where
   *   Limpa todas as condições adicionadas
   *   $where->clearConditions();
 */
+<<<<<<< HEAD
+=======
+
+?>
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465

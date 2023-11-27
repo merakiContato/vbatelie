@@ -83,11 +83,22 @@ class Usuario
 	}
 
 	public function delete()
+<<<<<<< HEAD
 {
     if ($this->getIdUsuario() != 0) {
         return( $this->dbquery->delete($this->toArray()));
     }
 }	
+=======
+	{
+		if ($this->getIdUsuario() != 0) {
+			return ($this->dbquery->delete($this->toArray()));
+		}
+	}
+
+
+
+>>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 
 	public function configurarSenha($senha)
 	{
