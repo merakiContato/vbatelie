@@ -26,7 +26,7 @@
 		<!-- IMG DO MENU -->
 		<div class="d-flex justify-content-center align-items-center img-logo">
 			<a href="home">
-				<img src="public/assets/images/logo1.png" alt="Logo do atelie VBatelie">
+				<img src="public/assets/images/Logo1.png" alt="Logo do atelie VBatelie">
 			</a>
 		</div>
 		<!-- MENU -->
@@ -43,7 +43,7 @@
 						<a class="nav-link links" data="sobre">Sobre o ateliê</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link links" data="catalogo">Catálogo de figurinos</a>
+						<a class="nav-link links" data="catalogofigurinos">Catálogo de figurinos</a>
 					</li>
 				</ul>
 			</div>
@@ -61,7 +61,7 @@
 					<ul class="list-unstyled">
 						<li><a data="home" class="links">Home</a></li>
 						<li><a data="sobre" class="links">Sobre o ateliê</a></li>
-						<li><a data="catalogo" class="links">Catalogo de figurinos</a></li>
+						<li><a data="catalogofigurinos" class="links">Catalogo de figurinos</a></li>
 					</ul>
 				</div>
 				<div class="col pagamento">

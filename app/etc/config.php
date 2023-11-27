@@ -62,7 +62,7 @@ if ($showErrors){
 }
 
 $config['database']['host']		= '144.217.39.54';
-$config['database']['schema']		= 'hostdeprojetos_vbatelie';
+$config['database']['schema']	= 'hostdeprojetos_vbatelie';
 $config['database']['user']		= 'hostdeprojetos';
 $config['database']['pass']		= 'ifspgru@2022';
 $config['database']['port']		= '3306';

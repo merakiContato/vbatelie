@@ -23,12 +23,11 @@ class Contas
 	private $tableName  = "hostdeprojetos_vbatelie.contas";
 	private $fieldsName = "idContas, mes, ano, idPedidoMaterial, idServContratado, tipo, preco, dtPag, sitPag";
 	private $fieldKey   = "idContas";
-	private $notNullFields = "mes, ano, idPedidoMaterial, idServContratado, tipo, preco, dtPag, sitPag";
 	private $dbquery     = null;
 
 	function __construct()
 	{
-		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey, $this->notNullFields);
+		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
 	}
 
 	function populate($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag)
@@ -60,6 +59,47 @@ class Contas
 		);
 	}
 
+	// Relatório financeiro antigo!
+	/* function relatorioPeriodo ($dataIni, $dataFim) {
+		$dataIni = \stripcslashes($dataIni);
+		$dataIni = \DateTime::createFromFormat('d/m/Y', $dataIni)->format("Y-m-d");
+		
+		$dataFim = \stripcslashes($dataFim);
+		$dataFim = \DateTime::createFromFormat('d/m/Y', $dataFim)->format("Y-m-d");
+		
+		$sql = "
+            SELECT  tipo, (sum(preco)*-1) as valorTotal 
+            FROM    contas
+            WHERE   dtPag between '".$dataIni."' and '".$dataFim."'
+            GROUP   BY tipo;
+        "; 
+		return ( $this->dbquery->getConn()->query($sql)->fetchAll(\PDO::FETCH_ASSOC));
+	} */
+
+	public function relatorioPeriodo($mes, $ano)
+	{
+		$ano = \intval($ano); // Converte o ano para inteiro
+
+		$sql = "
+        SELECT tipo, preco * 1 as valor
+        FROM contas
+        WHERE mes = '{$mes}' AND ano = '{$ano}';
+    ";
+
+		try {
+			$result = $this->dbquery->getConn()->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+
+			// Log após a execução bem-sucedida da consulta SQL
+			error_log('Consulta SQL executada com sucesso.');
+
+			return $result;
+		} catch (\PDOException $e) {
+			// Log em caso de erro na execução da consulta SQL
+			error_log('Erro ao executar a consulta SQL: ' . $e->getMessage());
+			return [];
+		}
+	}
+
 	public function toJson()
 	{
 		return (json_encode($this->toArray()));
@@ -86,6 +126,16 @@ class Contas
 		return ($rSet);
 	}
 
+
+	public function relatorioFinanceiro()
+	{
+		$where = new Where();
+		$where->addCondition("AND", 'mes', '=', $this->mes);
+		$where->addCondition("AND", 'ano', '=', $this->ano);
+		$rSet = $this->dbquery->selectFiltered($where);
+		return ($rSet);
+	}
+
 	public function listByFieldKey($value)
 	{
 		$where = (new Where())->addCondition('AND', $this->fieldKey, '=', $value);
@@ -99,45 +149,6 @@ class Contas
 			return ($this->dbquery->delete($this->toArray()));
 		}
 	}
-
-
-	public function calcularSomaContas($mes)
-	{
-		if ($mes !== '') {
-			return $this->calcularSomaContasBanco($mes);
-		} else {
-			return ['error' => 'Por favor, selecione um mês.'];
-		}
-	}
-
-	public function calcularSomaContasBanco($mes)
-	{
-		error_log("Início da função calcularSomaContasBanco");
-
-		if (!empty($mes)) {
-			$contas = new Contas();
-
-			$where = (new Where())->addCondition('AND', 'mes', '=', "'{$mes}'");
-
-
-			$resultado = $contas->listAll($where);
-
-			$soma = array_sum(array_column($resultado, 'preco'));
-
-			// Retorne um JSON válido
-			return json_encode(['success' => true, 'soma' => $soma]);
-		} else {
-			// Retorne um JSON válido, mesmo que a resposta seja negativa
-			return json_encode(['error' => 'Por favor, selecione um mês.']);
-		}
-
-		error_log("Fim da função calcularSomaContasBanco");
-	}
-
-
-
-
-
 
 	public function setIdContas($idContas)
 	{

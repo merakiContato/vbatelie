@@ -1,114 +1,53 @@
+
 <?php
-// Tá indo! (retorna dado e insere)
 
 use models\Catalogo;
 use core\utils\ControllerHandler;
 
-class CtrlCatalogo extends ControllerHandler
-{
-    public function __construct()
-    {
+class CtrlCatalogo extends ControllerHandler {
+
+    private $catalogo = null;
+
+    public function __construct(){
+        $this->catalogo = new Catalogo();
         parent::__construct();
     }
 
-    public function get()
-    {
-        try {
-            $idCatalogo = $this->getParameter('idCatalogo') ?? 0;
-            if ($idCatalogo === "") {
-                $catalogo = new Catalogo();
-                $resultSet = $catalogo->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else {
-                $catalogo = new Catalogo();
-                $catalogo->populate("", "", "");
-                $resultSet = $catalogo->listByFieldKey($idCatalogo);
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID não fornecido.'
-            ]);
-        }
+    public function get() {
+        echo json_encode($this->catalogo->listAll());
     }
 
-    public function post()
-    {
-        $data = $this->getData();
-
-        $catalogo = new Catalogo();
-        $idCatalogo = $data['idCatalogo'];
-        $descricao = $data['descricao'];
-        $nome = $data['nome'];
-
-        $catalogo->populate($idCatalogo, $descricao, $nome);
-        $result = $catalogo->save();
+    public function post() {        
+        $idCatalogo = $this->getParameter('idCatalogo')??0;
+        $idCatalogo = (( $idCatalogo == '') ? 0 : $idCatalogo);
+        $descricao = $this->getParameter('descricao');
+        $nome = $this->getParameter('nome');
+        $this->catalogo->populate( $idCatalogo, $descricao, $nome);
+        $result = $this->catalogo->save();
         echo $result;
     }
 
-    public function put()
-    {
-        $data = $this->getData();
-        $idCatalogo = $data['idCatalogo'] ?? 0;
-        if ($idCatalogo > 0) {
-            $catalogo = new Catalogo();
-            $idCatalogo = $data['idCatalogo'];
-            $descricao = $data['descricao'];
-            $nome = $data['nome'];
-
-            $catalogo->populate($idCatalogo, $descricao, $nome);
-            $result = $catalogo->save();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+    public function put() {        
+        $idCatalogo = $this->getParameter('idCatalogo');
+        $descricao = $this->getParameter('descricao');
+        $nome = $this->getParameter('nome');
+        $this->catalogo->populate( $idCatalogo, $descricao, $nome);
+        $result = $this->catalogo->save();
+        echo $result;
     }
 
-    public function delete()
-    {
-        $data = $this->getData();
-        $idCatalogo = $data['idCatalogo'] ?? 0;
-
-        if ($idCatalogo > 0) {
-            $catalogo = new Catalogo();
-
-            // Chama o método delete() na classe Catalogo
-            $result = $catalogo->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+    public function delete() {        
+        $idCatalogo = $this->getParameter('idCatalogo');
+        $this->catalogo->setidCatalogo($idCatalogo);
+    
+        $result = $this->catalogo->delete();
+        echo $result;
     }
 
-    public function file()
-    {
-    }
-}
+    public function file(){
 
-function rSetArrayToJson(array $rSet)
-{
-    $out = "";
-    foreach ($rSet as $line) {
-        $out .= "\n\t{";
-        foreach ($line as $key => $value) {
-            $out .= "\n\t\t\t'" .
-                ($key)
-                . "':'" .
-                ($value)
-                . "',";
-        }
-        $out = substr($out, 0, strlen($out) - 1);
-        $out .=  "\n\t}";
     }
-    header("Content-Type: text/html; charset=utf-8");
-    return   "[" . $out . "\n]";
 }
 
 new CtrlCatalogo();
+?>

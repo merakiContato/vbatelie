@@ -1,165 +1,105 @@
 
 <?php
 
-// Esse arquivo manipula operações CRUD dessa tabela.
+use models\Contas;
+use core\utils\ControllerHandler;
 
-use models\Contas; // Chamando a classe.
-use core\utils\ControllerHandler; // Chamando essa classe "ControllerHandler";
-
-class CtrlContas extends ControllerHandler // Criando uma class para essa control. Essa classe extrai algumas coisas dessa outra classe chamada "ControllerHandler".
+class CtrlContas extends ControllerHandler
 {
+
+    private $contas = null;
 
     public function __construct()
     {
+        $this->contas = new Contas();
         parent::__construct();
     }
 
-    public function get() // Método GET. Trata requisições GET. ListAll. Select * from contas.
+    public function get()
     {
-        try {
-            $idContas = $this->getParameter('idContas') ?? 0;
-            if ($idContas ==  "") { // Se não for fornecido nenhum parâmetro "idContas", ele vai listar todos os registros da tabela "contas" com esse "listAll".
-                $contas = new Contas();
-                $resultSet = $contas->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else { // Se ele achar esse "idContas" ele retorna as informações referentes a esse campo.
-                $contas = new Contas();
-                $contas->populate("", "", "", "", "", "", "", "", ""); // Arrumei aqui!
-                $resultSet = $contas->listByFieldKey($idContas); // Arrumei aqui!
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID não fornecido.'
-            ]);
-        }
+        echo json_encode($this->contas->listAll());
     }
 
     public function post()
     {
+        var_dump($_POST);
+        $idContas = $this->getParameter('idContas') ?? 0;
+        $idContas = (($idContas == '') ? 0 : $idContas);
+        $mes = $this->getParameter('mes');
+        $ano = $this->getParameter('ano');
+        $idPedidoMaterial = $this->getParameter('idPedidoMaterial');
+        $idServContratado = $this->getParameter('idServContratado');
+        $tipo = $this->getParameter('tipo');
+        $preco = $this->getParameter('preco');
+        $dtPag = $this->getParameter('dtPag');
+        $sitPag = $this->getParameter('sitPag');
+        $this->contas->populate($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag);
+        $result = $this->contas->save();
+        echo $result;
+    }
+
+    // SWITCH!
+    public function put()
+    {
         $data = $this->getData();
-        $contas = new Contas();
+        $this->contas = new Contas();
 
         if (isset($data['action'])) {
-            // Verifica a ação desejada
             $action = $data['action'];
 
             switch ($action) {
-                case 'calcularSomaContas':
-                    $mesSelecionado = $data['mes'] ?? '';
+                case 'relatorio':
+                    $ano = $this->getParameter('ano');
+                    $mes = $this->getParameter('mes');
 
-                    // Adicione a linha a seguir para definir o cabeçalho
-                    header('Content-Type: application/json');
+                    $this->contas->setAno($ano);
+                    $this->contas->setMes($mes);
 
-                    $resultado = $contas->calcularSomaContas($mesSelecionado);
+                    $result = $this->contas->relatorioPeriodo($mes, $ano);
 
-                    // Adicione logs para depuração
-                    error_log("Resultado: " . json_encode($resultado));
-
-                    if (empty($resultado)) {
-                        $response = ['error' => 'Nenhum dado disponível'];
-                    } else {
-                        $response = ['success' => true, 'soma' => $resultado];
-                    }
-
-                    // Antes de enviar a resposta
-                    error_log("Resposta JSON do servidor: " . json_encode($response));
-
-                    // Enviar a resposta
-                    echo json_encode($response);
-
-                    exit;
+                    echo json_encode($result);
                     break;
 
                 case 'insert':
-                    $idContas = $data['idContas'];
-                    $mes = $data['mes'];
-                    $ano = $data['ano'];
-                    $idPedidoMaterial = $data['idPedidoMaterial'];
-                    $idServContratado = $data['idServContratado'];
-                    $tipo = $data['tipo'];
-                    $preco = $data['preco'];
-                    $dtPag = $data['dtPag'];
-                    $sitPag = $data['sitPag'];
-                    $contas->populate($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag);
-                    $result = $contas->save();
-                    echo $result;
+                    // Obtenha os parâmetros necessários
+                    $idContas = $this->getParameter('idContas');
+                    $mes = $this->getParameter('mes');
+                    $ano = $this->getParameter('ano');
+                    $idPedidoMaterial = $this->getParameter('idPedidoMaterial');
+                    $idServContratado = $this->getParameter('idServContratado');
+                    $tipo = $this->getParameter('tipo');
+                    $preco = $this->getParameter('preco');
+                    $dtPag = $this->getParameter('dtPag');
+                    $sitPag = $this->getParameter('sitPag');
+
+                    // Chame o método save com os parâmetros
+                    $result = $this->contas->save($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag);
+
+                    // Retorne um JSON
+                    echo json_encode(['result' => $result]);
                     break;
 
                 default:
-                    // Ação não reconhecida
                     http_response_code(400);
                     echo json_encode([
                         'error' => 'Ação não reconhecida.'
                     ]);
                     break;
             }
-        } else {
-            // Lógica para outras funcionalidades do método post
-            // ...
         }
     }
 
 
-
-
-
-
-
-    public function put() // Método PUT. Usado para requisições PUT. Usado para atualizar um registro existente na tabela "contas".
+    public function delete()
     {
-        $data = $this->getData();
-        $idContas = $data['idContas'] ?? 0; // O "idContas" fornecido é válido? Ele existe?
-        if ($idContas > 0) {
-            $contas = new Contas();
-            $idContas = $data['idContas'];
-            $mes = $data['mes'];
-            $ano = $data['ano'];
-            $idPedidoMaterial = $data['idPedidoMaterial'];
-            $idServContratado = $data['idServContratado'];
-            $tipo = $data['tipo'];
-            $preco = $data['preco'];
-            $dtPag = $data['dtPag'];
-            $sitPag = $data['sitPag'];
-            $contas->populate($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag);
-            $result = $contas->save();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+        $idContas = $this->getParameter('idContas');
+        $this->contas->setIdContas($idContas);
+
+        $result = $this->contas->delete();
+        echo $result;
     }
 
-    public function delete() // MUDEI AQUI! Método DELETE. Requisições DELETE usadas para excluir um registro da tabela "contas".
-    {
-        $data = $this->getData();
-        $idContas = $data['idContas'] ?? 0;
-        if ($idContas > 0) {
-            $contas = new Contas();
-            $idContas = $data['idContas'];
-            $mes = $data['mes'];
-            $ano = $data['ano'];
-            $idPedidoMaterial = $data['idPedidoMaterial'];
-            $idServContratado = $data['idServContratado'];
-            $tipo = $data['tipo'];
-            $preco = $data['preco'];
-            $dtPag = $data['dtPag'];
-            $sitPag = $data['sitPag'];
-            $contas->populate($idContas, $mes, $ano, $idPedidoMaterial, $idServContratado, $tipo, $preco, $dtPag, $sitPag);
-            $result = $contas->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
-    }
-
-    public function file() // VAZIO!
+    public function file()
     {
     }
 }

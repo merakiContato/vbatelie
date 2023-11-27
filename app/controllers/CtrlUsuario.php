@@ -1,3 +1,4 @@
+
 <?php
 
 use models\Usuario;
@@ -6,39 +7,24 @@ use core\utils\ControllerHandler;
 class CtrlUsuario extends ControllerHandler
 {
 
+    private $usuario = null;
+
     public function __construct()
     {
+        $this->usuario = new Usuario();
         parent::__construct();
     }
 
     public function get()
     {
-        try {
-            $idUsuario = $this->getParameter('idUsuario') ?? 0;
-
-            if ($idUsuario == 0) {
-                // Se $idUsuario for 0, significa que é uma requisição para listar todos os usuários
-                $usuario = new Usuario();
-                $resultSet = $usuario->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else {
-                // Se $idUsuario for diferente de 0, é uma requisição para obter um usuário específico
-                $usuario = new Usuario();
-                $resultSet = $usuario->listByFieldKey($idUsuario);
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID não fornecido.'
-            ]);
-        }
+        echo json_encode($this->usuario->listAll());
     }
 
     public function post()
     {
         $data = $this->getData();
-        $usuario = new Usuario();
+        $usuario = new Usuario();  
+
 
         if (isset($data['action'])) {
             // Verifica a ação desejada
@@ -63,18 +49,16 @@ class CtrlUsuario extends ControllerHandler
                     break;
 
                 case 'insert':
-                    $senha = $data['senha'];
-                    $nivAcesso = $data['nivAcesso'];
-                    $nome = $data['nome'];
-                    $email = $data['email'];
-
-                    // Lógica para salvar o usuário
-                    $usuario->populate(null, $senha, $nivAcesso, $nome, $email); // null para indicar novo usuário
-                    $result = $usuario->save();
-
+                    $idUsuario = $this->getParameter('idUsuario') ?? 0;
+                    $idUsuario = (($idUsuario == '') ? 0 : $idUsuario);
+                    $senha = $this->getParameter('senha');
+                    $nivAcesso = $this->getParameter('nivAcesso');
+                    $nome = $this->getParameter('nome');
+                    $email = $this->getParameter('email');
+                    $usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);  // Corrigido para $usuario
+                    $result = $usuario->save();  // Corrigido para $usuario
                     echo $result;
                     break;
-
 
                 default:
                     // Ação não reconhecida
@@ -85,57 +69,28 @@ class CtrlUsuario extends ControllerHandler
                     break;
             }
         } else {
-            // Lógica para outras funcionalidades do método post
-            // ...
         }
     }
-
-
-
 
 
     public function put()
     {
-        $data = $this->getData();
-        $idUsuario = $data['idUsuario'] ?? 0;
-
-        if ($idUsuario > 0) {
-            $usuario = new Usuario();
-            $senha = $data['senha'];
-            $nivAcesso = $data['nivAcesso'];
-            $nome = $data['nome'];
-            $email = $data['email'];
-
-            $usuario->setIdUsuario($idUsuario);
-            $usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);
-            $result = $usuario->save();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+        $idUsuario = $this->getParameter('idUsuario');
+        $senha = $this->getParameter('senha');
+        $nivAcesso = $this->getParameter('nivAcesso');
+        $nome = $this->getParameter('nome');
+        $email = $this->getParameter('email');
+        $this->usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);
+        $result = $this->usuario->save();
+        echo $result;
     }
 
-    public function delete()
-    {
-        $data = $this->getData();
-        $idUsuario = $data['idUsuario'] ?? 0;
-
-        if ($idUsuario > 0) {
-            $usuario = new Usuario();
-
-            // Chama o método delete() na classe Usuario
-            $usuario->setIdUsuario($idUsuario);
-            $result = $usuario->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+    public function delete() {
+        $idUsuario = $this->getParameter('idUsuario');
+        $this->usuario->setIdUsuario($idUsuario);
+    
+        $result = $this->usuario->delete();
+        echo $result;
     }
 
     public function file()
@@ -144,3 +99,4 @@ class CtrlUsuario extends ControllerHandler
 }
 
 new CtrlUsuario();
+?>

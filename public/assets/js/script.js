@@ -6,7 +6,7 @@ $(document).ready(function() {
         $('#inicial').load($(event.target).attr("data"));
     });
 
-    $('#carouselExample').carousel({
+    $('#myCarousel').carousel({
         interval: 3000 
     });
 });

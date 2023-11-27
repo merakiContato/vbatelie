@@ -230,8 +230,9 @@ class DBQuery {
             }
         }
         $sql .= $where->build();
-        
+        echo $sql;
         try {
+            echo $sql;
             $stmt = $this->conn->query($sql);
             return $stmt->rowCount();
         } catch ( PDOException $error) {

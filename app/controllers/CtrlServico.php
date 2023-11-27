@@ -1,90 +1,55 @@
+
 <?php
-// Não tá adicionando MAS deve ser burrice minha!
 
 use models\Servico;
 use core\utils\ControllerHandler;
 
-class CtrlServico extends ControllerHandler
-{
+class CtrlServico extends ControllerHandler {
 
-    public function __construct()
-    {
+    private $servico = null;
+
+    public function __construct(){
+        $this->servico = new Servico();
         parent::__construct();
     }
 
-    public function get()
-    {
-        try {
-            $idServico = $this->getParameter('idServico') ?? 0;
-            if ($idServico == "") {
-                $servico = new Servico();
-                $resultSet = $servico->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else {
-                $servico = new Servico();
-                $servico->populate("", "", "", "", "");
-                $resultSet = $servico->listByFieldKey($idServico);
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID não fornecido.'
-            ]);
-        }
+    public function get() {
+        echo json_encode($this->servico->listAll());
     }
 
-    public function post()
-    {
-        $data = $this->getData();
-
-        $servico = new Servico();
-        $nome = $data['nome'];
-        $idCatalogo = $data['idCatalogo'];
-        $descricao = $data['descricao'];
-        $preco = $data['preco'];
-        $servico->populate("", $nome, $idCatalogo, $descricao, $preco);
-        $result = $servico->save();
+    public function post() {   
+        var_dump($_POST);     
+        $idServico = $this->getParameter('idServico')??0;
+        $idServico = (( $idServico == '') ? 0 : $idServico);
+        $nome = $this->getParameter('nome');
+        $idCatalogo = $this->getParameter('idCatalogo');
+        $descricao = $this->getParameter('descricao');
+        $preco = $this->getParameter('preco');
+        $this->servico->populate( $idServico, $nome, $idCatalogo, $descricao, $preco);
+        $result = $this->servico->save();
         echo $result;
     }
 
-    public function put()
-    {
-        $data = $this->getData();
-        $idServico = $data['idServico'] ?? 0;
-        if ($idServico > 0) {
-            $servico = new Servico();
-            $nome = $data['nome'];
-            $idCatalogo = $data['idCatalogo'];
-            $descricao = $data['descricao'];
-            $preco = $data['preco'];
-            $servico->populate($idServico, $nome, $idCatalogo, $descricao, $preco);
-            $result = $servico->save();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+    public function put() {        
+        $idServico = $this->getParameter('idServico');
+        $nome = $this->getParameter('nome');
+        $idCatalogo = $this->getParameter('idCatalogo');
+        $descricao = $this->getParameter('descricao');
+        $preco = $this->getParameter('preco');
+        $this->servico->populate( $idServico, $nome, $idCatalogo, $descricao, $preco);
+        $result = $this->servico->save();
+        echo $result;
     }
 
-    public function delete()
-    {
-        $data = $this->getData();
-        $idServico = $data['idServico'] ?? 0;
-        if ($idServico > 0) {
-            $servico = new Servico();
-            $servico->populate($idServico, "", "", "", "");
-            $result = $servico->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+    public function delete() {
+        $idServico = $this->getParameter('idServico');
+        $this->servico->setIdServico($idServico);
+    
+        $result = $this->servico->delete();
+        echo $result;
     }
+
+   
 
     function rSetArrayToJson(array $rSet)
     {
@@ -111,3 +76,4 @@ class CtrlServico extends ControllerHandler
 }
 
 new CtrlServico();
+?>

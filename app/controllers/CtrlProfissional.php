@@ -4,103 +4,61 @@
 use models\Profissional;
 use core\utils\ControllerHandler;
 
-class CtrlProfissional extends ControllerHandler
-{
+class CtrlProfissional extends ControllerHandler {
+
+    private $profissional = null;
 
     public function __construct(){
+        $this->profissional = new Profissional();
         parent::__construct();
     }
 
-    public function get()
-    {
-        try {
-            $idProfissional = $this->getParameter('idProfissional') ?? 0;
-
-            if ($idProfissional == 0) {
-                // Se $idProfissional for 0, significa que é uma requisição para listar todos os materiais
-                $profissional = new Profissional();
-                $resultSet = $profissional->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else {
-                // Se $idProfissional for diferente de 0, é uma requisição para obter um Profissional específico
-                $profissional = new Profissional();
-                $profissional->populate("","","", "", "", "", "", "", "", "", "");  // Não forneça valores para $titulo e $descricao
-                $resultSet = $profissional->listByFieldKey($idProfissional);
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID não fornecido.'
-            ]);
-        }
+    public function get() {
+        echo json_encode($this->profissional->listAll());
     }
 
-    public function post() {
-        $data = $this->getData();
-        $profissional = new Profissional();        
-        $idProfissional = $data['idProfissional'];
-        $idUsuario = $data['idUsuario'];
-        $nome = $data['nome'];
-        $cargo = $data['cargo'];
-        $hrTrabalho = $data['hrTrabalho'];
-        $cpf = $data['cpf'];
-        $cep = $data['cep'];
-        $endereco = $data['endereco'];
-        $complemento = $data['complemento'];
-        $telefone = $data['telefone'];
-        $email = $data['email'];
-        $profissional->populate( $idProfissional, $idUsuario, $nome, $cargo, $hrTrabalho, $cpf, $cep, $endereco, $complemento, $telefone, $email);
-        $result = $profissional->save();
+    public function post() { 
+        var_dump($_POST);       
+        $idProfissional = $this->getParameter('idProfissional')??0;
+        $idProfissional = (( $idProfissional == '') ? 0 : $idProfissional);
+        $nome = $this->getParameter('nome');
+        $cargo = $this->getParameter('cargo');
+        $hrTrabalho = $this->getParameter('hrTrabalho');
+        $cpf = $this->getParameter('cpf');
+        $cep = $this->getParameter('cep');
+        $endereco = $this->getParameter('endereco');
+        $complemento = $this->getParameter('complemento');
+        $telefone = $this->getParameter('telefone');
+        $email = $this->getParameter('email');
+        $this->profissional->populate( $idProfissional, $nome, $cargo, $hrTrabalho, $cpf, $cep, $endereco, $complemento, $telefone, $email);
+        $result = $this->profissional->save();
         echo $result;
     }
 
-    public function put() {
-        $data = $this->getData();
-        $idProfissional = $data['idProfissional'] ?? 0;
-        
-        if ($idProfissional > 0) {
-        $profissional = new Profissional();        
-        $idProfissional = $data['idProfissional'];
-        $idUsuario = $data['idUsuario'];
-        $nome = $data['nome'];
-        $cargo = $data['cargo'];
-        $hrTrabalho = $data['hrTrabalho'];
-        $cpf = $data['cpf'];
-        $cep = $data['cep'];
-        $endereco = $data['endereco'];
-        $complemento = $data['complemento'];
-        $telefone = $data['telefone'];
-        $email = $data['email'];
-        $profissional->setIdProfissional($idProfissional);
-        $profissional->populate( $idProfissional, $idUsuario, $nome, $cargo, $hrTrabalho, $cpf, $cep, $endereco, $complemento, $telefone, $email);
-        $result = $profissional->save();
+    public function put() {        
+        $idProfissional = $this->getParameter('idProfissional');
+        $nome = $this->getParameter('nome');
+        $cargo = $this->getParameter('cargo');
+        $hrTrabalho = $this->getParameter('hrTrabalho');
+        $cpf = $this->getParameter('cpf');
+        $cep = $this->getParameter('cep');
+        $endereco = $this->getParameter('endereco');
+        $complemento = $this->getParameter('complemento');
+        $telefone = $this->getParameter('telefone');
+        $email = $this->getParameter('email');
+        $this->profissional->populate( $idProfissional, $nome, $cargo, $hrTrabalho, $cpf, $cep, $endereco, $complemento, $telefone, $email);
+        $result = $this->profissional->save();
         echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
     }
 
-    public function delete() {
-        $data = $this->getData();
-        $idProfissional = $data['idProfissional'] ?? 0;
+    public function delete() {        
+        $idProfissional = $this->getParameter('idProfissional');
+        $this->profissional->setidProfissional($idProfissional);
     
-        if ($idProfissional > 0) {
-            $profissional = new Profissional(); 
-    
-            // Chama o método delete() na classe Profissional
-            $result = $profissional->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+        $result = $this->profissional->delete();
+        echo $result;
     }
+
 
     public function file(){
 

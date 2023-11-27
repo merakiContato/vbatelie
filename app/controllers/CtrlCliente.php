@@ -1,99 +1,70 @@
+
 <?php
 
 use models\Cliente;
 use core\utils\ControllerHandler;
 
-class CtrlCliente extends ControllerHandler
-{
+class CtrlCliente extends ControllerHandler {
 
-    public function __construct()
-    {
+    private $cliente = null;
+
+    public function __construct(){
+        $this->cliente = new Cliente();
         parent::__construct();
     }
 
-    public function get()
-    {
-        try {
-            $cpf = $this->getParameter('cpf') ?? 0;
-
-            if ($cpf == 0) {
-                $cliente = new Cliente();
-                $resultSet = $cliente->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else {
-                $cliente = new Cliente();
-                $resultSet = $cliente->listByFieldKey($cpf);
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'CPF não fornecido.'
-            ]);
-        }
+    public function get() {
+        echo json_encode($this->cliente->listAll());
     }
 
-    public function post()
-    {
-        $data = $this->getData();
-        $cliente = new Cliente;
-        $cpf = $data['cpf'];
-        $nome = $data['nome'];
-        $cep = $data['cep'];
-        $endereco = $data['endereco'];
-        $complemento = $data['complemento'];
-        $telefone = $data['telefone'];
-        $email = $data['email'];
-        $cliente->populate($cpf, $nome, $cep, $endereco, $complemento, $telefone, $email);
-        $result = $cliente->save();
+    public function post() {
+        try {
+            $cpf = $this->getParameter('cpf');
+            $nome = $this->getParameter('nome');
+            $cep = $this->getParameter('cep');
+            $endereco = $this->getParameter('endereco');
+            $complemento = $this->getParameter('complemento');
+            $telefone = $this->getParameter('telefone');
+            $email = $this->getParameter('email');
+            
+            $this->cliente->populate($cpf, $nome, $cep, $endereco, $complemento, $telefone, $email);
+        $result = $this->cliente->save();
+        
+        if ($result) {
+            echo 'Cliente adicionado com sucesso!';
+        } else {
+            echo 'Falha ao adsicionar cliente. Detalhes no log do servidor.';
+        }
+    } catch (\Exception $e) {
+        echo 'Erro: ' . $e->getMessage();
+    }
+}
+    
+    public function put() {        
+        $cpf = $this->getParameter('cpf');
+        $nome = $this->getParameter('nome');
+        $cep = $this->getParameter('cep');
+        $endereco = $this->getParameter('endereco');
+        $complemento = $this->getParameter('complemento');
+        $telefone = $this->getParameter('telefone');
+        $email = $this->getParameter('email');
+        $this->cliente->populate( $cpf, $nome, $cep, $endereco, $complemento, $telefone, $email);
+        $result = $this->cliente->save();
         echo $result;
     }
 
-    public function put()
-    {
-        $data = $this->getData();
-        $cpf = $data['cpf'] ?? 0;
-
-        if ($cpf != 0) {
-            $cliente = new Cliente();
-            $cpf = $data['cpf'];
-            $nome = $data['nome'];
-            $cep = $data['cep'];
-            $endereco = $data['endereco'];
-            $complemento = $data['complemento'];
-            $telefone = $data['telefone'];
-            $email = $data['email'];
-            $cliente->populate($cpf, $nome, $cep, $endereco, $complemento, $telefone, $email);
-            $result = $cliente->save();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'CPF inválido ou não fornecido.'
-            ]);
-        }
+    public function delete() {        
+        $cpf = $this->getParameter('cpf');
+        $this->cliente->setCpf($cpf);
+    
+        $result = $this->cliente->delete();
+        echo $result;
     }
 
-    public function delete()
-    {
-        $data = $this->getData();
-        $cpf = $data['cpf'] ?? 0;
+    public function file(){
 
-        if ($cpf > 0) {
-            $cliente = new Cliente();
-            $result = $cliente->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'CPF inválido ou não fornecido.'
-            ]);
-        }
-    }
-
-    public function file()
-    {
     }
 }
 
 new CtrlCliente();
+?>

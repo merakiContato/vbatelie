@@ -1,172 +1,90 @@
+
 <?php
-// Não funciona!
 
 use models\Pedido;
 use core\utils\ControllerHandler;
 
 class CtrlPedido extends ControllerHandler
 {
+
+    private $pedido = null;
+
     public function __construct()
     {
+        $this->pedido = new Pedido();
         parent::__construct();
     }
 
     public function get()
     {
-        try {
-            $idPedido = $this->getParameter('idPedido') ?? 0;
-            if ($idPedido == "") {
-                $pedido = new Pedido();
-                $resultSet = $pedido->listAll();
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            } else {
-                $pedido = new Pedido();
-                $pedido->populate("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // Arrumei aqui!
-                $resultSet = $pedido->listByFieldKey($idPedido);
-                echo json_encode($resultSet, JSON_UNESCAPED_UNICODE);
-            }
-        } catch (\Exception $error) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID do Pedido não fornecido.'
-            ]);
-        }
+        echo json_encode($this->pedido->listAll());
     }
 
     public function post()
     {
-        $data = $this->getData();
-
-        var_dump($data);
-
-        $pedido = new Pedido();
-        $idPedido = $data['idPedido'];
-        $cpf = $data['cpf'];
-        $idProfissional = $data['idProfissional'];
-        $valorOrcamento = $data['valorOrcamento'];
-        $idServico = $data['idServico'];
-        $valorEntrada = $data['valorEntrada'];
-        $valorFinal = $data['valorFinal'];
-        $medidasPedido = $data['medidasPedido'];
-        $dtPrevIni = $data['dtPrevIni'];
-        $dtPagEntrada = $data['dtPagEntrada'];
-        $dtIni = $data['dtIni'];
-        $dtPrevFim = $data['dtPrevFim'];
-        $dtFim = $data['dtFim'];
-        $valorTotalFim = $data['valorTotalFim'];
-        $dtPagFim = $data['dtPagFim'];
-        $tipoPag = $data['tipoPag'];
-        $sitPag = $data['sitPag'];
-        $dtExpedicao = $data['dtExpedicao'];
-        $dtEntrega = $data['dtEntrada'];
-        $dtCancelamento = $data['dtCancelamento'];
-        $observacao = $data['observacao'];
-
-        $pedido->populate(
-            $idPedido,
-            $cpf,
-            $idProfissional,
-            $idServico,
-            $valorOrcamento,
-            $valorEntrada,
-            $valorFinal,
-            $medidasPedido,
-            $dtPrevIni,
-            $dtPagEntrada,
-            $dtIni,
-            $dtPrevFim,
-            $dtFim,
-            $valorTotalFim,
-            $dtPagFim,
-            $tipoPag,
-            $sitPag,
-            $dtExpedicao,
-            $dtEntrega,
-            $dtCancelamento,
-            $observacao
-        );
-
-        $result = $pedido->save();
+        var_dump($_POST);
+        $idPedido = $this->getParameter('idPedido') ?? 0;
+        $idPedido = (($idPedido == '') ? 0 : $idPedido);
+        $cpf = $this->getParameter('cpf');
+        $idProfissional = $this->getParameter('idProfissional');
+        $idServico = $this->getParameter('idServico');
+        $valorOrcamento = $this->getParameter('valorOrcamento');
+        $valorEntrada = $this->getParameter('valorEntrada');
+        $valorFinal = $this->getParameter('valorFinal');
+        $medidasPedido = $this->getParameter('medidasPedido');
+        $dtPrevIni = $this->getParameter('dtPrevIni');
+        $dtPagEntrada = $this->getParameter('dtPagEntrada');
+        $dtIni = $this->getParameter('dtIni');
+        $dtPrevFim = $this->getParameter('dtPrevFim');
+        $dtFim = $this->getParameter('dtFim');
+        $valorTotalFim = $this->getParameter('valorTotalFim');
+        $dtPagFim = $this->getParameter('dtPagFim');
+        $tipoPag = $this->getParameter('tipoPag');
+        $sitPag = $this->getParameter('sitPag');
+        $dtExpedicao = $this->getParameter('dtExpedicao');
+        $dtEntrega = $this->getParameter('dtEntrega');
+        $dtCancelamento = $this->getParameter('dtCancelamento');
+        $observacao = $this->getParameter('observacao');
+        $this->pedido->populate($idPedido, $cpf, $idProfissional, $idServico, $valorOrcamento, $valorEntrada, $valorFinal, $medidasPedido, $dtPrevIni, $dtPagEntrada, $dtIni, $dtPrevFim, $dtFim, $valorTotalFim, $dtPagFim, $tipoPag, $sitPag, $dtExpedicao, $dtEntrega, $dtCancelamento, $observacao);
+        $result = $this->pedido->save();
         echo $result;
     }
 
     public function put()
     {
-        $data = $this->getData();
-        $idPedido = $data['idPedido'] ?? 0;
-
-        if ($idPedido > 0) {
-            $pedido = new Pedido();
-            $cpf = $data['cpf'];
-            $idProfissional = $data['idProfissional'];
-            $valorOrcamento = $data['valorOrcamento'];
-            $idServico = $data['idServico'];
-            $valorEntrada = $data['valorEntrada'];
-            $valorFinal = $data['valorFinal'];
-            $medidasPedido = $data['medidasPedido'];
-            $dtPrevIni = $data['dtPrevIni'];
-            $dtPagEntrada = $data['dtPagEntrada'];
-            $dtIni = $data['dtIni'];
-            $dtPrevFim = $data['dtPrevFim'];
-            $dtFim = $data['dtFim'];
-            $valorTotalFim = $data['valorTotalFim'];
-            $dtPagFim = $data['dtPagFim'];
-            $tipoPag = $data['tipoPag'];
-            $sitPag = $data['sitPag'];
-            $dtExpedicao = $data['dtExpedicao'];
-            $dtEntrega = $data['dtEntrada'];
-            $dtCancelamento = $data['dtCancelamento'];
-            $observacao = $data['observacao'];
-
-            $pedido->populate(
-                $idPedido,
-                $cpf,
-                $idProfissional,
-                $idServico,
-                $valorOrcamento,
-                $valorEntrada,
-                $valorFinal,
-                $medidasPedido,
-                $dtPrevIni,
-                $dtPagEntrada,
-                $dtIni,
-                $dtPrevFim,
-                $dtFim,
-                $valorTotalFim,
-                $dtPagFim,
-                $tipoPag,
-                $sitPag,
-                $dtExpedicao,
-                $dtEntrega,
-                $dtCancelamento,
-                $observacao
-            );
-
-            $result = $pedido->save();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID do Pedido inválido ou não fornecido.'
-            ]);
-        }
+        $idPedido = $this->getParameter('idPedido');
+        $cpf = $this->getParameter('cpf');
+        $idProfissional = $this->getParameter('idProfissional');
+        $idServico = $this->getParameter('idServico');
+        $valorOrcamento = $this->getParameter('valorOrcamento');
+        $valorEntrada = $this->getParameter('valorEntrada');
+        $valorFinal = $this->getParameter('valorFinal');
+        $medidasPedido = $this->getParameter('medidasPedido');
+        $dtPrevIni = $this->getParameter('dtPrevIni');
+        $dtPagEntrada = $this->getParameter('dtPagEntrada');
+        $dtIni = $this->getParameter('dtIni');
+        $dtPrevFim = $this->getParameter('dtPrevFim');
+        $dtFim = $this->getParameter('dtFim');
+        $valorTotalFim = $this->getParameter('valorTotalFim');
+        $dtPagFim = $this->getParameter('dtPagFim');
+        $tipoPag = $this->getParameter('tipoPag');
+        $sitPag = $this->getParameter('sitPag');
+        $dtExpedicao = $this->getParameter('dtExpedicao');
+        $dtEntrega = $this->getParameter('dtEntrega');
+        $dtCancelamento = $this->getParameter('dtCancelamento');
+        $observacao = $this->getParameter('observacao');
+        $this->pedido->populate($idPedido, $cpf, $idProfissional, $idServico, $valorOrcamento, $valorEntrada, $valorFinal, $medidasPedido, $dtPrevIni, $dtPagEntrada, $dtIni, $dtPrevFim, $dtFim, $valorTotalFim, $dtPagFim, $tipoPag, $sitPag, $dtExpedicao, $dtEntrega, $dtCancelamento, $observacao);
+        $result = $this->pedido->save();
+        echo $result;
     }
 
     public function delete()
     {
-        $data = $this->getData();
-        $idPedido = $data['idPedido'] ?? 0;
+        $idPedido = $this->getParameter('idPedido');
+        $this->pedido->setIdPedido($idPedido);
 
-        if ($idPedido > 0) {
-            $pedido = new Pedido();
-            $result = $pedido->delete();
-            echo $result;
-        } else {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'ID inválido ou não fornecido.'
-            ]);
-        }
+        $result = $this->pedido->delete();
+        echo $result;
     }
 
     public function file()
@@ -175,3 +93,4 @@ class CtrlPedido extends ControllerHandler
 }
 
 new CtrlPedido();
+?>

@@ -19,61 +19,44 @@
     <script src="public/assets/js/script.js"></script>
 </head>
 
-<body class="body">
+<body id="body">
 
-    <div class="container mt-4">
-        <h2 class="text-center mb-4">Gerenciamento de Materiais</h2>
+    <div class="d-flex flex-column min-vh-100">
+        <nav class="nav navbar d-flex justify-content-between mx-0 gerenciamento">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-painel py-1 px-2"><a href="gerenciamento">Painel de gerenciamento</a></button>
+            </div>
+            <div class="col-md-2 img-logo">
+                <img src="public/assets/images/Logo1.png" alt="Logo do atelie VBatelie">
+            </div>
+        </nav>
+
+        <h2 class="text-center mt-4 mb-0 text-geren">Gerenciamento de Materiais</h2>
 
         <!-- Formulário para adicionar novo material -->
-        <form id="newMaterial" class="row g-3 mb-4">
-            <div class="col-md-6">
+        <form id="newMaterial" class="row g-4 m-4 ">
+            <div class="col-md-4">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" required>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="descricao" class="form-label">Descrição</label>
                 <input type="text" class="form-control" id="descricao" name="descricao" required>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Adicionar Material</button>
+                <button type="submit" class="btn btn-add py-1 px-2">Adicionar Material</button>
             </div>
         </form>
 
         <!-- Contêiner para exibir a tabela de materiais -->
         <div id="tableMateriaisContainer"></div>
+    
     </div>
-
-    <!-- --- Modal para editar material, não estamos usando mais -----
-    <div class="modal fade" id="editMaterialModal" tabindex="-1" aria-labelledby="editMaterialModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editMaterialModalLabel">Editar Material</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    -- Formulário para editar material --
-                    <form id="editMaterialForm">
-                        <div class="mb-3">
-                            <label for="editTitulo" class="form-label">Título</label>
-                            <input type="text" class="form-control" id="editTitulo" name="editTitulo" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editDescricao" class="form-label">Descrição</label>
-                            <input type="text" class="form-control" id="editDescricao" name="editDescricao" required>
-                        </div>
-                        <input type="hidden" id="editMaterialId" name="editMaterialId">
-                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <script>
         // URLs e nomes usados no controle de materiais
-        var ctrlMaterialUrl = "ctrlMaterial"; //rota da ctrl
-        var listAllMateriais = "ctrlMaterial"; //rota da função list all
+        var ctrlMaterialUrl = "material"; //rota da ctrl
+        var listAllMateriais = "material"; //rota da função list all
         var labelsMaterial = ['idMaterial', 'titulo', 'descricao']; //campos da tabela
 
         // Função que é executada quando o documento está pronto
@@ -85,11 +68,10 @@
             $('#newMaterial').on('submit', function(e) {
                 e.preventDefault(); //evitar eventos pré definidos da página, tipo recarregar
                 var formData = $(this).serialize(); //serializar é tipo salvar?
-                console.log(formData);
                 // Envia uma requisição AJAX para adicionar um novo material
                 $.ajax({
                     url: ctrlMaterialUrl,
-                    type: 'POST',
+                    method: 'POST',
                     data: formData,
                     success: function(response) {
                         alert('Material adicionado com sucesso!');
@@ -102,98 +84,63 @@
                 });
             });
 
-            /* --- uso da modal, que não estamos mais utilizando (Manipula o evento de envio do formulário de edição para salvar alterações) ---
-            // Manipula o evento de exibição do modal de edição ao clicar em "Editar"
-            $(document).on('click', '.btnEdit', function() {
-                var row = $(this).closest('tr');
-                var materialData = {};
-                // Coleta dados da linha selecionada
-                $.each(labelsMaterial, function(i, label) {
-                    materialData[label] = row.find('td').eq(i).text();
-                });
-                // Preenche os campos do formulário de edição com os dados do material
-                $('#editMaterialId').val(materialData['idMaterial']);
-                $('#editTitulo').val(materialData['titulo']);
-                $('#editDescricao').val(materialData['descricao']);
-                // Exibe o modal de edição
-                $('#editMaterialModal').modal('show');
-            });
-            */
-
         });
 
         // Função para salvar os dados do formulário
         function saveFormData(idform) {
-            var formData = $("#" + idform).serializeArray();
-            var jsonData = {};
-
-            // Converte o array de dados serializados em um objeto
-            formData.forEach(function(entry) {
-                jsonData[entry.name] = entry.value;
-            });
+            var formData = $("#" + idform).serialize();
 
             // Envia uma requisição AJAX para salvar as alterações no Material
             $.ajax({
-                url: ctrlMaterialUrl + '?action=save',
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(jsonData),
+                url: ctrlMaterialUrl,
+                method: 'PUT',
+                contentType: 'application/x-www-form-urlencoded', // Alterado para o tipo de conteúdo correto
+                data: formData,
                 success: function(response) {
-
                     alert('Material editado com sucesso!');
                     loadTable(listAllMateriais, labelsMaterial, ctrlMaterialUrl);
                 },
-                error: function(xhr, status, error) {
-                    console.error("Erro ao salvar as alterações no Material:", error);
-                    console.log("Resposta do servidor após erro:", xhr.responseText);
+                error: function() {
                     alert('Erro ao salvar as alterações no Material.');
                 }
-
             });
         }
 
+
+        // Função para excluir os dados do formulário
         function delFormData(idform) {
-            var formData = $("#" + idform).serializeArray();
-            var jsonData = {};
-
-            // Converte o array de dados serializados em um objeto
-            formData.forEach(function(entry) {
-                jsonData[entry.name] = entry.value;
-            });
-
-            // Adicione um console.log para verificar se o ID está correto
-            console.log("ID do Material a ser excluído:", jsonData.idMaterial);
+            var formData = $("#" + idform).serialize();
 
             // Envia uma requisição AJAX para excluir o material
             $.ajax({
-                url: ctrlMaterialUrl + '?action=delete',
-                type: 'DELETE',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    idMaterial: jsonData.idMaterial
-                }),
+                url: ctrlMaterialUrl,
+                method: 'DELETE',
+                contentType: 'application/x-www-form-urlencoded',
+                data: formData,
                 success: function(response) {
                     alert('Material excluído com sucesso!');
                     // Recarrega a tabela após excluir o material
                     loadTable(listAllMateriais, labelsMaterial, ctrlMaterialUrl);
                 },
-                error: function(xhr, status, error) {
-                    console.error("Erro ao excluir o material:", error);
-                    console.log("Resposta do servidor após erro:", xhr.responseText);
+                error: function() {
                     alert('Erro ao excluir o material.');
                 }
             });
         }
+
 
         // Função para carregar e exibir a tabela de materiais, aquela tabelinha bonita
         function loadTable(urlDataTable, labelsDataTable, sendCtrlSaveDeleteUrl) {
             // Envia uma requisição AJAX para obter os dados da tabela
             $.ajax({
                 url: urlDataTable,
-                type: 'GET',
+                method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    var tableHtml = '<table class="table table-striped"><thead><tr>';
+                    var tableHtml = '<div class="table-responsive m-4" style="overflow-x: auto;">';
+                    tableHtml += '<table class="table table-striped" style="max-width: 100%;">';
+
+                    tableHtml += '<thead class="table-header">';
                     // Cria cabeçalhos da tabela com base nos rótulos fornecidos
                     $.each(labelsDataTable, function(i, label) {
                         tableHtml += '<th>' + label.charAt(0).toUpperCase() + label.slice(1) + '</th>'; // Capitaliza os rótulos
@@ -215,13 +162,9 @@
                                 '</td>'; // Usa || '' para evitar valores nulos
                         });
 
-                        // Adicione um campo oculto para armazenar o idMaterial
-                        tableHtml += '<input type="hidden" name="idMaterial" form="' + formId + '" value="' + material['idMaterial'] + '" >';
-
                         // Adiciona botões de ação para editar, salvar e excluir
                         tableHtml +=
                             '<td>' +
-                            //'<button class="btn btn-warning btnEdit">Editar</button>' + (fazia parte do modal lá)
                             '<button class="btn btn-primary btnSave" onclick="saveFormData( \'' + formId + '\' );" >Salvar</button>' +
                             '</td>' +
                             '<td>' +
@@ -241,6 +184,15 @@
             });
         }
     </script>
+
+    <footer class="py-3">
+        <div class="mt-3 meraki d-flex align-items-center justify-content-center">
+            <a href="https://talentosdoifsp.gru.br/meraki/" class="d-flex">
+                <img src="public/assets/images/logo_meraki.png" alt="Logo da Meraki">
+                <h6 class="ms-1">Desenvolvido por Meraki</h6>
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>

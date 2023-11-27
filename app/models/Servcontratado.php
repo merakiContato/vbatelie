@@ -25,11 +25,10 @@ use core\database\Where;
 	private $tableName  = "hostdeprojetos_vbatelie.servcontratado";
 	private $fieldsName = "idServContratado, cpf, nome, telefone, cep, endereco, complemento, email, idPedido, idServico, pagServ, dtPagServ";
 	private $fieldKey   = "idServContratado";
-	private $notNullFields = "idServContratado, cpf, nome, telefone, cep, endereco, complemento, email, idPedido, idServico, pagServ, dtPagServ";
 	private $dbquery     = null;
 
 	function __construct(){
-		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey, $this->notNullFields);
+		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
 	}
 
 	function populate( $idServContratado, $cpf, $nome, $telefone, $cep, $endereco, $complemento, $email, $idPedido, $idServico, $pagServ, $dtPagServ){

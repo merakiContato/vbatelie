@@ -19,15 +19,14 @@ use core\utils\Sanitize;
  * echo $query; // Produz: WHERE nome = ? AND idade > ?
  * ```
  */
-class Where
-{
-
+class Where {
+    
     private $conditions = array();
-
-    public function __construct()
-    {
+    
+    public function __construct(){
+        
     }
-
+    
     /**
      * Adiciona uma condição à cláusula WHERE.
      *
@@ -37,17 +36,16 @@ class Where
      * @param mixed $value O valor a ser comparado na condição.
      *
      */
-    public function addCondition($logicOperator, $fieldName, $operator, $value)
-    {
-        //$value = (new Sanitize(false, false, true))->Clean($value);
+    public function addCondition($logicOperator, $fieldName, $operator, $value) {
+        //$value = (new Sanitize(false, false, true))->toClean($value);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "fieldName" => $fieldName,
             "operator" => $operator,
-            "value" => $value
+            "value" => $value 
         );
     }
-
+    
     /**
      * Adiciona uma condição LIKE à cláusula WHERE.
      *
@@ -56,17 +54,16 @@ class Where
      * @param mixed $value O valor a ser comparado na condição.
      *
      */
-    public function addLike($logicOperator, $fieldName, $value)
-    {
-        $value = (new Sanitize(false, false, true))->Clean($value);
+    public function addLike($logicOperator, $fieldName, $value) {
+        $value = (new Sanitize(false, false, true))->toClean($value);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "LIKE",
             "fieldName" => $fieldName,
-            "value" => "%" . $value . "%"
+            "value" => "%".$value."%"
         );
     }
-
+    
     /**
      * Adiciona uma condição NOT LIKE à cláusula WHERE.
      *
@@ -75,17 +72,16 @@ class Where
      * @param mixed $value O valor a ser comparado na condição.
      *
      */
-    public function addNotLike($logicOperator, $fieldName, $value)
-    {
-        $value = (new Sanitize(false, false, true))->Clean($value);
+    public function addNotLike($logicOperator, $fieldName, $value) {
+        $value = (new Sanitize(false, false, true))->toClean($value);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "NOT LIKE",
             "fieldName" => $fieldName,
-            "value" => "%" . $value . "%"
+            "value" => "%".$value."%"
         );
     }
-
+    
     /**
      * Adiciona uma condição IN à cláusula WHERE.
      *
@@ -94,9 +90,8 @@ class Where
      * @param mixed $values Os valores a serem comparados na condição (deve ser um array).
      *
      */
-    public function addIn($logicOperator, $fieldName, $values)
-    {
-        $values = (new Sanitize(false, false, true))->Clean($values);
+    public function addIn($logicOperator, $fieldName, $values) {
+        $values = (new Sanitize(false, false, true))->toClean($values);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "IN",
@@ -104,7 +99,7 @@ class Where
             "value" => $values
         );
     }
-
+    
     /**
      * Adiciona uma condição NOT IN à cláusula WHERE.
      *
@@ -113,9 +108,8 @@ class Where
      * @param mixed $values Os valores a serem comparados na condição (deve ser um array).
      *
      */
-    public function addNotIn($logicOperator, $fieldName, $values)
-    {
-        $values = (new Sanitize(false, false, true))->Clean($values);
+    public function addNotIn($logicOperator, $fieldName, $values) {
+        $values = (new Sanitize(false, false, true))->toClean($values);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "NOT IN",
@@ -124,7 +118,7 @@ class Where
         );
         return $this;
     }
-
+    
     /**
      * Adiciona uma condição BETWEEN à cláusula WHERE.
      *
@@ -134,10 +128,9 @@ class Where
      * @param mixed $max O valor máximo a ser comparado na condição.
      *
      */
-    public function addBetween($logicOperator, $fieldName, $min, $max)
-    {
-        $min = (new Sanitize(false, false, true))->Clean($min);
-        $max = (new Sanitize(false, false, true))->Clean($max);
+    public function addBetween($logicOperator, $fieldName, $min, $max) {
+        $min = (new Sanitize(false, false, true))->toClean($min);
+        $max = (new Sanitize(false, false, true))->toClean($max);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "BETWEEN",
@@ -145,7 +138,7 @@ class Where
             "value" => array($min, $max)
         );
     }
-
+    
     /**
      * Adiciona uma condição NOT BETWEEN à cláusula WHERE.
      *
@@ -154,10 +147,9 @@ class Where
      * @param mixed $min O valor mínimo a ser comparado na condição.
      * @param mixed $max O valor máximo a ser comparado na condição.
      */
-    public function addNotBetween($logicOperator, $fieldName, $min, $max)
-    {
-        $min = (new Sanitize(false, false, true))->Clean($min);
-        $max = (new Sanitize(false, false, true))->Clean($max);
+    public function addNotBetween($logicOperator, $fieldName, $min, $max) {
+        $min = (new Sanitize(false, false, true))->toClean($min);
+        $max = (new Sanitize(false, false, true))->toClean($max);
         $this->conditions[] = array(
             "logicOperator" => $logicOperator,
             "operator" => "NOT BETWEEN",
@@ -165,50 +157,45 @@ class Where
             "value" => array($min, $max)
         );
     }
-
+    
     /**
      * Retorna as condições armazenadas.
      *
      * @return array As condições armazenadas.
      */
-    public function getConditions()
-    {
+    public function getConditions() {
         return $this->conditions;
     }
-
+    
     /**
      * Limpa todas as condições armazenadas.
      */
-    public function clearConditions()
-    {
+    public function clearConditions() {
         $this->conditions = array();
     }
-
+    
     /**
      * Constrói a cláusula WHERE com base nas condições armazenadas.
      *
      * @return string $whereClause cláusula WHERE construída.
      */
-    public function build()
-    {
+    public function build() {
         $whereClause = "";
         $hasConditions = false;
-
+        
         foreach ($this->conditions as $condition) {
             if (!empty($condition["value"])) {
                 if ($hasConditions) {
                     $whereClause .= " " . $condition["logicOperator"] . " ";
-                } else {
+                }
+                else {
                     $whereClause .= " WHERE ";
                     $hasConditions = true;
                 }
                 $fieldName = $condition["fieldName"];
                 $operator = $condition["operator"];
                 $value = $condition["value"];
-
-                // Adicione logs para depuração
-                error_log("FieldName: " . $fieldName . ", Operator: " . $operator . ", Value: " . print_r($value, true));
-
+                
                 switch ($operator) {
                     case "IN":
                     case "NOT IN":
@@ -229,7 +216,7 @@ class Where
                 }
             }
         }
-        return ($whereClause);
+        return ( $whereClause );
     }
 }
 
@@ -279,3 +266,5 @@ class Where
   *   Limpa todas as condições adicionadas
   *   $where->clearConditions();
 */
+
+?>

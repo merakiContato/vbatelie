@@ -1,5 +1,5 @@
 <!-- CARROSSEL -->
-<div class="container-fluid px-0">
+<div>
     <div id="myCarousel" class="carousel slide m-3" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="carousel-button active" aria-current="true" aria-label="Slide 1"></button>
@@ -33,7 +33,7 @@
         </button>
     </div>
     <!-- FAIXA 1 -->
-    <div class="faixa_01 text-center mb-4 mt-5" style="color: #b93171;">
+    <div class="faixa_01 text-center mb-4 mt-5">
         <h1>Do ateliê para você!</h1>
         <h5>Conheça o nosso trabalho</h5>
     </div>
@@ -93,7 +93,7 @@
     <!-- BOTÃO CARD -->
     <div class="row justify-content-center mb-5">
         <div class="col-auto">
-            <h5 class="produtos py-1 px-2">Veja mais em catálogo</h5>
+            <h5 class="produtos py-1">Acesse o catálogo para ver mais!</h5>
     </div>
     <!-- INSTAGRAM -->
     <div class="row text-center instagram p-4 my-5">

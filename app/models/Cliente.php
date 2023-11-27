@@ -1,14 +1,15 @@
 <?php
-// Eu que fiz!
 
-namespace models;
+namespace  models;
 
 use core\database\DBQuery;
 use core\utils\Sanitize;
 use core\database\Where;
 
+
 class Cliente
 {
+
 	private $cpf;
 	private $nome;
 	private $cep;
@@ -19,17 +20,17 @@ class Cliente
 
 	private $tableName  = "hostdeprojetos_vbatelie.cliente";
 	private $fieldsName = "cpf, nome, cep, endereco, complemento, telefone, email";
-	private $fieldKey = "cpf";
-	private $notNullFields = "cpf, nome, cep, endereco, telefone, email";
-	private $dbquery = null;
+	private $fieldKey   = "cpf";
+	private $dbquery     = null;
 
-	public function __construct()
+	function __construct()
 	{
-		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey, $this->notNullFields);
+		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
 	}
 
-	public function populate($cpf, $nome, $cep, $endereco, $complemento, $telefone, $email)
+	function populate($cpf, $nome, $cep, $endereco, $complemento, $telefone, $email)
 	{
+
 		$this->setCpf($cpf);
 		$this->setNome($nome);
 		$this->setCep($cep);
@@ -61,6 +62,7 @@ class Cliente
 	{
 		return ("\n\t\t\t" . implode(", ", $this->toArray()));
 	}
+
 
 	public function save()
 	{

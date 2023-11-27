@@ -78,7 +78,7 @@
                     <button class="p-2"><a href="viewCatalogo">Acessar contas</a></button>
                 </div>
                 <div class="row">
-                    <button class="p-2"><a href="relatorios">Relatórios</a></button>
+                    <button class="p-2"><a href="relatoriofinanceiro">Relatórios</a></button>
                 </div>
             </div>
             <div class="col-md-4 mb-2">
@@ -100,6 +100,7 @@
                 <h5 class="ms-1">Desenvolvido por Meraki</h5>
             </a>
         </div>
+    </footer>
 </body>
 
 </html>
