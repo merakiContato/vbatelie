@@ -59,38 +59,6 @@ class Contas
 		);
 	}
 
-<<<<<<< HEAD
-	// Relatório financeiro antigo!
-	/* function relatorioPeriodo ($dataIni, $dataFim) {
-		$dataIni = \stripcslashes($dataIni);
-		$dataIni = \DateTime::createFromFormat('d/m/Y', $dataIni)->format("Y-m-d");
-		
-		$dataFim = \stripcslashes($dataFim);
-		$dataFim = \DateTime::createFromFormat('d/m/Y', $dataFim)->format("Y-m-d");
-		
-		$sql = "
-=======
-	/* function relatorioPeriodo ($dataIni, $dataFim) {
-	    $dataIni = \stripcslashes($dataIni);
-	    $dataIni = \DateTime::createFromFormat('d/m/Y', $dataIni)->format("Y-m-d");
-	    
-	    $dataFim = \stripcslashes($dataFim);
-	    $dataFim = \DateTime::createFromFormat('d/m/Y', $dataFim)->format("Y-m-d");
-	    
-	    $sql = "
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
-            SELECT  tipo, (sum(preco)*-1) as valorTotal 
-            FROM    contas
-            WHERE   dtPag between '".$dataIni."' and '".$dataFim."'
-            GROUP   BY tipo;
-        "; 
-<<<<<<< HEAD
-		return ( $this->dbquery->getConn()->query($sql)->fetchAll(\PDO::FETCH_ASSOC));
-=======
-	    return ( $this->dbquery->getConn()->query($sql)->fetchAll(\PDO::FETCH_ASSOC));
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
-	} */
-
 	public function relatorioPeriodo($mes, $ano)
 	{
 		$ano = \intval($ano); // Converte o ano para inteiro
@@ -115,11 +83,6 @@ class Contas
 		}
 	}
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 	public function toJson()
 	{
 		return (json_encode($this->toArray()));

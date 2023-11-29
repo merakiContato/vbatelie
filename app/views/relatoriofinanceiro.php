@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório Financeiro</title>
     <link rel="icon" type="image/png" href="public/assets/images/Logo2.png">
-    <link rel="shortcut icon" href="public/assets/images/icon.ico" type="image/x-ico">
-
+    
     <!-- Links das bibliotecas, estão internas agora-->
     <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
@@ -23,8 +22,7 @@
     <div class="d-flex flex-column min-vh-100">
 
         <nav class="nav navbar d-flex justify-content-between mx-0 gerenciamento">
-            <div class="col-md-3">
-                <button type="button" class="btn btn-painel py-1 px-2"><a href="gerenciamento">Painel de gerenciamento</a></button>
+            <div class="col-md-2">
             </div>
             <div class="col-md-2 img-logo">
                 <img src="public/assets/images/Logo1.png" alt="Logo do atelie VBatelie">

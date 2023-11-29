@@ -8,7 +8,6 @@
 	<title>VBatelie</title>
 
 	<link rel="icon" type="image/png" href="public/assets/images/Logo2.png">
-	<link rel="shortcut icon" href="public/assets/images/icon.ico" type="image/x-ico">
 
 	<link rel="stylesheet" href="public/assets/css/style.css">
 	<link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
@@ -47,7 +46,7 @@
 					</li>
 				</ul>
 			</div>
-			<button type="button" class="btn btn-gerenciamento py-1 px-2"><a href="manutencao">Gerenciamento</a></button>
+			<button type="button" class="btn btn-gerenciamento py-1 px-2"><a href="login">Gerenciamento</a></button>
 		</nav>
 	</div>
 	<!-- PÁGINA INICIAL -->

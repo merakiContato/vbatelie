@@ -23,7 +23,7 @@ class CtrlUsuario extends ControllerHandler
     public function post()
     {
         $data = $this->getData();
-        $usuario = new Usuario();  
+        $usuario = new Usuario();
 
 
         if (isset($data['action'])) {
@@ -36,15 +36,20 @@ class CtrlUsuario extends ControllerHandler
                     $senha = $data['senha'];
 
                     // Lógica para autenticar o usuário
-                    if (Usuario::authenticateUser($email, $senha)) {
+                    $idUsuario = Usuario::authenticateUser($email, $senha);
+
+                    if ($idUsuario !== false) {
                         // Usuário autenticado com sucesso
-                        echo json_encode(['success' => true]);
+                        echo json_encode(['idUsuario' => $idUsuario]);
                     } else {
                         // Falha na autenticação
                         http_response_code(400);
                         echo json_encode([
                             'error' => 'Email ou senha inválidos.'
                         ]);
+
+                        // Adicione mensagens de log para debug
+                        error_log('Falha na autenticação para o email: ' . $email);
                     }
                     break;
 
@@ -55,8 +60,8 @@ class CtrlUsuario extends ControllerHandler
                     $nivAcesso = $this->getParameter('nivAcesso');
                     $nome = $this->getParameter('nome');
                     $email = $this->getParameter('email');
-                    $usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);  // Corrigido para $usuario
-                    $result = $usuario->save();  // Corrigido para $usuario
+                    $usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);
+                    $result = $usuario->save();
                     echo $result;
                     break;
 
@@ -85,21 +90,11 @@ class CtrlUsuario extends ControllerHandler
         echo $result;
     }
 
-<<<<<<< HEAD
-    public function delete() {
-        $idUsuario = $this->getParameter('idUsuario');
-        $this->usuario->setIdUsuario($idUsuario);
-    
-=======
     public function delete()
     {
         $idUsuario = $this->getParameter('idUsuario');
-        $senha = $this->getParameter('senha');
-        $nivAcesso = $this->getParameter('nivAcesso');
-        $nome = $this->getParameter('nome');
-        $email = $this->getParameter('email');
-        $this->usuario->populate($idUsuario, $senha, $nivAcesso, $nome, $email);
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
+        $this->usuario->setIdUsuario($idUsuario);
+
         $result = $this->usuario->delete();
         echo $result;
     }

@@ -110,10 +110,6 @@ nav .navbar-header a {
 .btn-gerenciamento a {
     text-transform: uppercase;
     color: #fff6f9 !important;
-<<<<<<< HEAD
-=======
-    font-weight: 400 !important;
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     letter-spacing: 1px;
     text-decoration: none;
 }
@@ -143,11 +139,7 @@ nav .navbar-header a {
     letter-spacing: 1px;
 }
 
-<<<<<<< HEAD
 .historia .img1 img {
-=======
-.img1 img {
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
     width: 400px;
     border-radius: 100px;
 }
@@ -507,12 +499,8 @@ label {
 
 .table th,
 .table td {
-<<<<<<< HEAD
     text-align: center !important;
     color: #741340 !important;
-=======
-    text-align: center;
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 }
 
 .modal-content {
@@ -539,7 +527,6 @@ label {
     margin-right: 5px;
 }
 
-<<<<<<< HEAD
 .btnSave {
     background-color: #b93171 !important;
     border: none !important;
@@ -558,8 +545,6 @@ label {
     color: #fff6f9 !important;
 }
 
-=======
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 /* ---------- Página de relatorio financeiro ----------- */
 
 .relatorio h1 {
@@ -615,17 +600,9 @@ label {
 }
 
 /*------ Página login ------*/
-.login .col-colorida {
-    background-color: transparent;
-}
 
 .login .acesso {
-    background-color: #f7c5de;
-    border-radius: 0;
     color: #b93171;
-    font-size: 18px;
-    text-transform: uppercase;
-    border: none;
 }
 
 .login .acesso:hover {
@@ -634,8 +611,8 @@ label {
 }
 
 .login .btn2 {
-    color: #fdecf2;
-    background-color: #240062;
+    color: #fff6f9;
+    background-color: #603981;
     font-size: 17px;
     border-radius: 10px;
     text-transform: uppercase;
@@ -643,40 +620,12 @@ label {
 }
 
 .login .btn3 {
-    color: #fdecf2;
+    color: #fff6f9;
     background-color: #b93171;
     border-radius: 10px;
     font-size: 17px;
     text-transform: uppercase;
     border: none;
-}
-
-.login .btn2:hover {
-    background-color: #c29de2;
-    color: #ffffff;
-    box-shadow: 0px 0px 20px 0px #c29de2;
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
-}
-
-.login .btn2:active {
-    background-color: #9135e1;
-    color: #ffffff;
-    box-shadow: 0px 0px 20px 0px #9135e1;
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
-}
-
-.login .btn3:hover {
-    background-color: #f29aca;
-    color: #ffffff;
-    box-shadow: 0px 0px 20px 0px #f29aca;
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
-}
-
-.login .btn3:active {
-    background-color: #ef54a9;
-    color: #ffffff;
-    box-shadow: 0px 0px 20px 0px #ef54a9;
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
 }
 
 .login .img1 {
@@ -689,34 +638,24 @@ label {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
 }
 
 .login .form-container input {
     border: 1px solid #B93171;
-    border-radius: 12px;
+    border-radius: 10px;
     width: 20rem;
     height: 25px;
     background-color: transparent;
     padding: 14px;
-    margin-bottom: 25px;
 }
 
 .login .form-container ::placeholder {
     text-transform: none;
-    color: #4e1932;
+    color: #b93171;
 }
 
 .login .col-direita-ge {
-<<<<<<< HEAD
-    background-image: url(public/assets/images/logo2.png) !important;
-    background-size: cover !important;
-    background-position: center !important;
-=======
-    background-image: url(public/assets/images/loginge.jpg);
-    background-size: cover;
-    background-position: center;
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
+    padding: 0 !important;
 }
 
 .container-login {
@@ -754,6 +693,11 @@ label {
     color: #fdecf2;
 }
 
+.login input:focus,
+.login input:hover {
+    border: 1px solid #b93171 !important;
+}
+
 /*------ Página inicial gerenciamento ------*/
 
 .gerenciamento .navbar-brand {
@@ -778,28 +722,9 @@ label {
 
 /*------ Página gerenciamento gerente ------*/
 
-.geren a {
-    text-decoration: none;
-    color: #B93171;
-}
-
-.geren .row button:hover,
-.geren .row button:active,
-.geren .row button:focus {
-    background-color: #6e82d8;
-    box-shadow: 0px 0px 20px 0px #7688d5;
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(206, 89, 55, 0);
-}
-
-.geren .row a:hover,
-.geren .row a:active,
-.geren .row a:focus {
-    color: #ffffff;
-}
-
 .geren h1 {
-    color: #2A2F99;
-    background-color: #C4CCF0;
+    color: #fff6f9;
+    background-color: #b93171;
     border-radius: 10px;
     text-transform: uppercase;
 }
@@ -810,8 +735,8 @@ label {
 }
 
 .geren h5 {
-    color: white;
-    background-color: #929FDA;
+    color: #fff6f9;
+    background-color: #ef94bf;
     border-radius: 10px;
     text-transform: uppercase;
     text-align: center;
@@ -824,18 +749,20 @@ label {
 .geren button:hover,
 .geren button:focus,
 .geren button:active {
-    background-color: #F7C5DE;
-    color: #603981;
+    background-color: #b93171;
+    color: #fff6f9;
     border: none;
     width: 300px;
-    margin: 10px auto;
-    font-weight: bolder;
     border-radius: 10px;
+}
+
+.geren button:active,
+.geren button:focus {
+    background-color: #b93171 !important;
 }
 
 .geren {
     min-height: 100vh;
-<<<<<<< HEAD
 }
 
 /*------ Layout geral do gerenciamento das tabelas ------*/
@@ -865,8 +792,22 @@ label {
     color: #b93171 !important;
 }
 
+.formgeren input::placeholder {
+    color: #b93171 !important;
+}
+
 .td-centered {
     vertical-align: middle !important;
-=======
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
+}
+
+select.form-control {
+    color: #b93171;
+}
+
+select.form-control option {
+    color: #b93171;
+}
+
+.custom-date input[type="date"] {
+    color: #b93171;
 }

@@ -22,19 +22,11 @@ use core\database\Where;
 		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
 	}
 
-<<<<<<< HEAD
 	function populate($idCatalogo, $descricao, $nome){
 
 		 $this->setIdCatalogo($idCatalogo);
 		 $this->setDescricao($descricao);
 		 $this->setNome($nome);
-=======
-	function populate( $idCatalogo, $descricao, $nome){
-
-		 $this->setIdCatalogo( $idCatalogo );
-		 $this->setDescricao( $descricao );
-		 $this->setNome( $nome );
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 	}
 
 	public function toArray(){
@@ -64,11 +56,7 @@ use core\database\Where;
 
 	public function listAll() {
 		    $rSet = $this->dbquery->select();
-<<<<<<< HEAD
 		    return($rSet);
-=======
-		    return( $rSet );
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 	}
 
 	public function listByFieldKey( $value ){

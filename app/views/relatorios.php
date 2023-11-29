@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soma de Contas</title>
     <link rel="icon" type="image/png" href="public/assets/images/Logo2.png">
-    <link rel="shortcut icon" href="public/assets/images/icon.ico" type="image/x-ico">
 
     <!-- Links das bibliotecas, estão internas agora-->
     <link rel="stylesheet" href="public/assets/css/style.css">

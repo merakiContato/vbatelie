@@ -83,22 +83,11 @@ class Usuario
 	}
 
 	public function delete()
-<<<<<<< HEAD
 {
     if ($this->getIdUsuario() != 0) {
         return( $this->dbquery->delete($this->toArray()));
     }
 }	
-=======
-	{
-		if ($this->getIdUsuario() != 0) {
-			return ($this->dbquery->delete($this->toArray()));
-		}
-	}
-
-
-
->>>>>>> 8e64c128849c7fa748a262399d9370d29ec44465
 
 	public function configurarSenha($senha)
 	{
@@ -111,29 +100,38 @@ class Usuario
 	}
 
 	public static function authenticateUser($email, $senha)
-	{
-		$usuario = new Usuario();
-		$result = $usuario->listByField('email', $email); // Utiliza um novo método listByField
+{
+    $usuario = new Usuario();
+    $result = $usuario->listByField('email', $email);
 
-		if (!empty($result)) {
-			$userData = $result[0];
-			$hashedPassword = isset($userData['senha']) ? $userData['senha'] : '';
+    if (!empty($result)) {
+        $userData = $result[0];
+        $hashedPassword = isset($userData['senha']) ? $userData['senha'] : '';
 
-			error_log('Email digitado: ' . $email);
-			error_log('Senha digitada: ' . $senha);
-			error_log('Hash armazenado: ' . $hashedPassword);
+        if (!empty($hashedPassword) && $usuario->verificarSenha($senha)) {
+            // Retorne diretamente o idUsuario e nivAcesso no mesmo nível
+            $response = ['idUsuario' => $userData['idUsuario'], 'nivAcesso' => $userData['nivAcesso']];
+            echo json_encode($response);
+            exit;  // Adicione esta linha para encerrar a execução
+        } else {
+            error_log('A senha fornecida não coincide com o hash armazenado.');
+        }
+    } else {
+        error_log('Usuário não encontrado para o e-mail fornecido.');
+    }
 
-			if (!empty($hashedPassword) && $usuario->verificarSenha($senha)) {
-				return true; // Autenticação bem-sucedida
-			} else {
-				error_log('A senha fornecida não coincide com o hash armazenado.');
-			}
-		} else {
-			error_log('Usuário não encontrado para o e-mail fornecido.');
-		}
+    // Falha na autenticação
+    http_response_code(400);
+    echo json_encode([
+        'error' => 'Email ou senha inválidos.'
+    ]);
 
-		return false; // Autenticação falhou
-	}
+    // Adicione mensagens de log para debug
+    error_log('Falha na autenticação para o email: ' . $email);
+}
+
+
+
 
 
 	public function listByField($field, $value)
@@ -148,8 +146,6 @@ class Usuario
 
     return $result;
 }
-
-
 
 	public function setIdUsuario($idUsuario)
 	{

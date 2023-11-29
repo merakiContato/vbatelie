@@ -35,71 +35,77 @@
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/controllers/Error.php"
 	},
-	"gerenciamento" : {
-		"path" : "app/views/gerenciamento.php",
+	"gerente" : {
+		"path" : "app/views/gerente.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
+	},
+	"funcionario" : {
+		"path" : "app/views/funcionario.php",
+		"sessionKey": [{"idUsuario": false}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/login.php"
 	},
 	"viewMaterial" : {
 		"path" : "app/views/viewMaterial.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewContas" : {
 		"path" : "app/views/viewContas.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewPedidomaterial" : {
 		"path" : "app/views/viewPedidomaterial.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewPedido" : {
 		"path" : "app/views/viewPedido.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewProfissional" : {
 		"path" : "app/views/viewProfissional.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewServcontratado" : {
 		"path" : "app/views/viewServcontratado.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewServico" : {
 		"path" : "app/views/viewServico.php",
-		"sessionKey": [{"idServico": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewUsuario" : {
 		"path" : "app/views/viewUsuario.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewCatalogo" : {
 		"path" : "app/views/viewCatalogo.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"viewCliente" : {
 		"path" : "app/views/viewCliente.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"catalogofigurinos" : {
 		"path" : "app/views/catalogofigurinos.php",
@@ -111,60 +117,60 @@
 		"path" : "app/controllers/CtrlServcontratado.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"usuario" : {
 		"path" : "app/controllers/CtrlUsuario.php",
 		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"pedidomaterial" : {
 		"path" : "app/controllers/CtrlPedidomaterial.php",
-		"sessionKey": [{"idPedidomaterial": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"pedido" : {
 		"path" : "app/controllers/CtrlPedido.php",
-		"sessionKey": [{"idPedido": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"material" : {
 		"path" : "app/controllers/CtrlMaterial.php",
-		"sessionKey": [{"idMaterial": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"catalogo" : {
 		"path" : "app/controllers/CtrlCatalogo.php",
-		"sessionKey": [{"idCatalogo": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"cliente" : {
 		"path" : "app/controllers/CtrlCliente.php",
-		"sessionKey": [{"idCliente": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"contas" : {
 		"path" : "app/controllers/CtrlContas.php",
-		"sessionKey": [{"idContas": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"servico" : {
 		"path" : "app/controllers/CtrlServico.php",
-		"sessionKey": [{"idServico": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	},
 	"profissional" : {
 		"path" : "app/controllers/CtrlProfissional.php",
-		"sessionKey": [{"idProfissional": false}],
+		"sessionKey": [{"idUsuario": false}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/controllers/Error.php"
+		"errorPath" : "app/views/login.php"
 	}
 }

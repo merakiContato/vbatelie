@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Manutenção em andamento</title>
     <!-- Adicione os links para as bibliotecas do Bootstrap -->
-    <link rel="shortcut icon" href="public/assets/images/icon.ico" type="image/x-ico">
 
     <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
@@ -23,6 +22,7 @@
             justify-content: center;
             height: 100vh;
             background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
         }
 
         .maintenance-container {

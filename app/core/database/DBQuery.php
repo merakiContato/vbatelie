@@ -267,6 +267,7 @@ class DBQuery {
             }
         }
         $sql .= $where->build();
+        echo $sql;
         
         try {
             $stmt = $this->conn->query($sql);
