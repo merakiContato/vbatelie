@@ -22,7 +22,7 @@
     <!-- Menu -->
     <nav class="nav navbar d-flex justify-content-between mx-0 gerenciamento">
         <div class="col-md-3">
-            <button type="button" class="btn btn-painel py-1 px-2"><a href="login">Voltar ao login</a></button>
+            <button type="button" id="logoutBtn" class="btn btn-painel py-1 px-2"><a href="login">Logout</a></button>
         </div>
         <div class="col-md-2 img-logo">
             <img src="public/assets/images/Logo1.png" alt="Logo do atelie VBatelie">

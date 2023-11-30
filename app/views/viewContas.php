@@ -118,7 +118,6 @@
                         alert('Erro ao adicionar conta. Detalhes: ' + error);
                     }
                 });
-
             });
         });
 

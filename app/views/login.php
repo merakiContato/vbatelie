@@ -18,11 +18,11 @@
 <body id="body" class="login">
 
     <div class="container-fluid">
-        <div class="row vh-100">
+        <div class="row">
             <div class="col-md-6 col-colorida">
 
                 <div class="img1 d-flex justify-content-center">
-                    <img class="w-25 h-25" src="public/assets/images/logo2.png" alt="">
+                    <img class="w-25 h-25" src="public/assets/images/Logo2.png" alt="">
                 </div>
 
                 <!-- Formulário: -->
@@ -39,16 +39,17 @@
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn2 p-2 mt-3" onclick="login()">Entrar</button>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn3 p-2 mt-3"><a href="home">Voltar</a></button>
-                        </div>
+                        
                     </form>
                 </div>
+                <div class="d-flex justify-content-center ">
+                            <button class="btn3 p-2 mt-5 mb-3"><a href="home">Voltar</a></button>
+                        </div>
             </div>
 
             <!-- Imagem da direita -->
-            <div class="col-md-6 col-direita-ge">
-                <img src="public/assets/images/loginfun.jpg" alt="" class="img-fluid w-100 h-100">
+            <div class="col-md-6 col-direita-ge vh-100">
+                
             </div>
         </div>
     </div>

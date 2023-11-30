@@ -22,7 +22,7 @@
     <!-- Menu -->
     <nav class="nav navbar d-flex justify-content-between mx-0 gerenciamento">
         <div class="col-md-3">
-            <button type="button" class="btn btn-painel py-1 px-2"><a href="login">Voltar ao login</a></button>
+            <button type="button" id="logoutBtn" class="btn btn-painel py-1 px-2"><a href="login">Logout</a></button>
         </div>
         <div class="col-md-2 img-logo">
             <img src="public/assets/images/Logo1.png" alt="Logo do atelie VBatelie">
@@ -126,6 +126,28 @@
             </a>
         </div>
     </footer>
+
+    <script>
+        // script.js
+
+        $(document).ready(function() {
+            $("#logoutBtn").on("click", function() {
+                // Envia uma requisição AJAX para o script de logout
+                $.ajax({
+                    type: "POST",
+                    url: "logout", // Altere para o caminho correto do script de logout
+                    success: function(response) {
+                        // Redireciona para a página de login após o logout
+                        window.location.href = "login.php"; // Altere para o caminho correto da página de login
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Erro durante o logout:", error);
+                        // Adicione mensagens de erro ou manipulação adequada aqui
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

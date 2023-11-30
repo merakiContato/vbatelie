@@ -83,11 +83,11 @@ class Usuario
 	}
 
 	public function delete()
-{
-    if ($this->getIdUsuario() != 0) {
-        return( $this->dbquery->delete($this->toArray()));
-    }
-}	
+	{
+		if ($this->getIdUsuario() != 0) {
+			return ($this->dbquery->delete($this->toArray()));
+		}
+	}
 
 	public function configurarSenha($senha)
 	{
@@ -108,7 +108,7 @@ class Usuario
         $userData = $result[0];
         $hashedPassword = isset($userData['senha']) ? $userData['senha'] : '';
 
-        if (!empty($hashedPassword) && $usuario->verificarSenha($senha)) {
+        if (!empty($hashedPassword) && password_verify($senha, $hashedPassword)) {
             // Retorne diretamente o idUsuario e nivAcesso no mesmo nível
             $response = ['idUsuario' => $userData['idUsuario'], 'nivAcesso' => $userData['nivAcesso']];
             echo json_encode($response);
@@ -134,18 +134,21 @@ class Usuario
 
 
 
+
+
+
 	public function listByField($field, $value)
-{
-    $where = (new Where())->addCondition('AND', $field, '=', $value);
-    $result = $this->dbquery->selectWhere($where);
+	{
+		$where = (new Where())->addCondition('AND', $field, '=', $value);
+		$result = $this->dbquery->selectWhere($where);
 
-    if (!empty($result)) {
-        $userData = $result[0];
-        $this->populate($userData['idUsuario'], $userData['senha'], $userData['nivAcesso'], $userData['nome'], $userData['email']);
-    }
+		if (!empty($result)) {
+			$userData = $result[0];
+			$this->populate($userData['idUsuario'], $userData['senha'], $userData['nivAcesso'], $userData['nome'], $userData['email']);
+		}
 
-    return $result;
-}
+		return $result;
+	}
 
 	public function setIdUsuario($idUsuario)
 	{

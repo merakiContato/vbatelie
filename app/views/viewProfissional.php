@@ -41,6 +41,7 @@
                     <option value="Costureira">Costureira</option>
                     <option value="Recepcionista">Recepcionista</option>
                     <option value="Faxineira">Faxineira</option>
+                    <option value="Gerente">Gerente</option>
                 </select>
             </div>
             <div class="col-md-6">

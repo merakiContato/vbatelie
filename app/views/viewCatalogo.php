@@ -143,17 +143,18 @@
                                 '</td>';
                         });
                         tableHtml +=
-                            '<td>' +
-                            '<button class="btn btnSave" onclick="saveFormData( \'' + formId + '\' );" >Salvar</button>' +
-                            '</td>' +
-                            '<td>' +
-                            '<button class="btn btnDelete" onclick="delFormData( \'' + formId + '\' );" >Excluir</button>' +
-                            '</td>' +
-                            '</tr>';
+                            `<td>` +
+                            `<button class="btn btnSave" onclick="saveFormData('${formId}')" >Salvar</button>` +
+                            `</td>` +
+                            `<td>` +
+                            `<button class="btn btnDelete" onclick="delFormData('${formId}')" >Excluir</button>` +
+                            `</td>` +
+                            `</tr>`;
                         tableHtml += '</form>';
                     });
 
                     tableHtml += '</tbody></table>';
+                    tableHtml += '</div>'
                     $('#tableCatalogoContainer').html(tableHtml);
                 },
                 error: function() {

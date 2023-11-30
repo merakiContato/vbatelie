@@ -655,7 +655,9 @@ label {
 }
 
 .login .col-direita-ge {
-    padding: 0 !important;
+    background-image: url(../images/loginfun.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .container-login {

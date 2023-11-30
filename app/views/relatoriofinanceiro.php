@@ -103,7 +103,8 @@
                 type: 'PUT',
                 data: {
                     mes: mes,
-                    ano: ano
+                    ano: ano,
+                    action: 'relatorio'
                 },
                 dataType: 'json',
                 success: function(data) {

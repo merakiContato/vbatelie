@@ -147,14 +147,14 @@
             console.log("Dados do formulário a serem excluídos:", formData);
             // Envia uma requisição AJAX para salvar as alterações no material
             $.ajax({
-                url: ctrlservcontratadoUrl,
+                url: ctrlServcontratadoUrl,
                 method: 'DELETE',
                 contentType: 'application/x-www-form-urlencoded',
                 data: formData,
                 success: function(response) {
                     alert('servcontratado editado com sucesso!');
                     // Recarrega a tabela após salvar as alterações no servcontratado
-                    loadTable(listAllservcontratado, labelsservcontratado, ctrlservcontratadoUrl);
+                    loadTable(listAllServcontratado, labelsServcontratado, ctrlServcontratadoUrl);
                 },
                 error: function() {
                     alert('Erro ao salvar as alterações no servcontratado.');
